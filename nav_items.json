@@ -1,0 +1,102 @@
+{
+    "community": {
+        "label": "聊天社区",
+        "sub_items": [
+            {
+                "icon": "fa-qq",
+                "label": "QQ群",
+                "link": "https://qm.qq.com/q/aTXFsufyeI"
+            },
+            {
+                "icon": "fa-hashtag",
+                "label": "QQ频道",
+                "link": "https://pd.qq.com/g/WarmaFans1026/"
+            },
+            {
+                "icon": "fa-th-list",
+                "label": "问卷",
+                "link": "https://q.warma.fans/"
+            }
+        ]
+    },
+    "mc_server": {
+        "label": "MC服务器",
+        "sub_items": [
+            {
+                "icon": "fa-globe",
+                "label": "官网",
+                "link": "https://home.warma.fans/"
+            },
+            {
+                "icon": "fa-paint-brush",
+                "label": "皮肤站",
+                "link": "https://skin.warma.fans/"
+            },
+            {
+                "icon": "fa-qq",
+                "label": "交流群",
+                "link": "https://qm.qq.com/q/jNOV6jH2HS"
+            },
+            {
+                "icon": "fa-qq",
+                "label": "插件服消息互通群",
+                "link": "https://qm.qq.com/q/jdbfkttKEg"
+            },
+            {
+                "icon": "fa-qq",
+                "label": "MOD服消息互通群",
+                "link": "https://qm.qq.com/q/qDkRfEGcGk"
+            },
+            {
+                "icon": "fa-book",
+                "label": "帮助文档",
+                "link": "https://docs.warma.fans/"
+            }
+        ]
+    },
+    "warma": {
+        "label": "Warma",
+        "sub_items": [
+            {
+                "icon": "bilibili",
+                "label": "B站 @Warma",
+                "link": "https://space.bilibili.com/53456"
+            },
+            {
+                "icon": "bilibili",
+                "label": "B站 @warma养鸽场",
+                "link": "https://space.bilibili.com/106320250"
+            },
+            {
+                "icon": "fa-weibo",
+                "label": "微博 @_warma_",
+                "link": "https://m.weibo.cn/u/1782488734"
+            },
+            {
+                "icon": "fa-shopping-cart",
+                "label": "淘宝 @沃玛养鸡场",
+                "link": "https://warmania.taobao.com/"
+            }
+        ]
+    },
+    "links": {
+        "label": "友情链接",
+        "sub_items": [
+            {
+                "icon": "bilibili",
+                "label": "沃玛生贺",
+                "link": "https://www.bilibili.com/video/BV1sJyUY8EeV/"
+            },
+            {
+                "icon": "bilibili",
+                "label": "橙息B站",
+                "link": "https://space.bilibili.com/112978436"
+            },
+            {
+                "icon": "fa-rss",
+                "label": "音铃博客",
+                "link": "https://blog.iin0.cn/"
+            }
+        ]
+    }
+}
