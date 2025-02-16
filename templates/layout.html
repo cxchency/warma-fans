@@ -10,13 +10,14 @@
     <style>
         /* 透明背景并且添加模糊效果 */
         .bg-transparent {
-            background-color: transparent;
+            background-color: rgb(255, 255, 255);
         }
 
         /* 半透明毛玻璃效果 */
         .bg-semi-transparent {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
         }
 
         /* 添加字体阴影 */
@@ -62,7 +63,7 @@
 
     <!-- 顶部导航栏 -->
     <header class="bg-transparent fixed top-0 left-0 w-full z-50">
-        <div id="header" class=" mx-auto flex items-center justify-between px-12 py-4">
+        <div id="header" class=" mx-auto flex items-center justify-between px-4 py-4">
             <a href="https://warma.fans">
                 <div class="flex items-center">
                     <img src="https://pic1.imgdb.cn/item/67af98fdd0e0a243d4ff66ed.jpg" alt="沃玛频道" class="w-8 h-8 rounded-lg svg-shadow">
@@ -101,7 +102,7 @@
 
             <!-- 汉堡按钮：在屏幕较小的时候显示 -->
             <div class="md:hidden flex items-center">
-                <button id="hamburger-button" class="text-white text-2xl">
+                <button id="hamburger-button" class="text-white text-2xl text-shadow">
                     <i class="fa fa-bars"></i>
                 </button>
             </div>
@@ -143,21 +144,22 @@
         // 汉堡按钮的功能
         const hamburgerButton = document.getElementById('hamburger-button');
         const mobileMenu = document.getElementById('mobile-menu');
-
+    
         hamburgerButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('show');
+            navbar.classList.toggle('bg-semi-transparent', mobileMenu.classList.contains('show'));
         });
-
+    
         // 获取导航栏元素
         const navbar = document.getElementById('header');
-
+    
         const scrollContainer = document.getElementById('main-container');
-
+    
         // 监听滚动事件
         scrollContainer.addEventListener('scroll', () => {
             if (scrollContainer.scrollTop > window.innerHeight) {
                 navbar.classList.add('bg-semi-transparent');
-            } else {
+            } else if (!mobileMenu.classList.contains('show')) {
                 navbar.classList.remove('bg-semi-transparent');
             }
         });

@@ -10,13 +10,14 @@
     <style>
         /* 透明背景并且添加模糊效果 */
         .bg-transparent {
-            background-color: transparent;
+            background-color: rgb(255, 255, 255);
         }
 
         /* 半透明毛玻璃效果 */
         .bg-semi-transparent {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
         }
 
         /* 添加字体阴影 */
@@ -62,7 +63,7 @@
 
     <!-- 顶部导航栏 -->
     <header class="bg-transparent fixed top-0 left-0 w-full z-50">
-        <div id="header" class=" mx-auto flex items-center justify-between px-12 py-4">
+        <div id="header" class=" mx-auto flex items-center justify-between px-4 py-4">
             <a href="https://warma.fans">
                 <div class="flex items-center">
                     <img src="https://pic1.imgdb.cn/item/67af98fdd0e0a243d4ff66ed.jpg" alt="沃玛频道" class="w-8 h-8 rounded-lg svg-shadow">
@@ -243,7 +244,7 @@
 
             <!-- 汉堡按钮：在屏幕较小的时候显示 -->
             <div class="md:hidden flex items-center">
-                <button id="hamburger-button" class="text-white text-2xl">
+                <button id="hamburger-button" class="text-white text-2xl text-shadow">
                     <i class="fa fa-bars"></i>
                 </button>
             </div>
@@ -525,7 +526,7 @@
         <div class="mt-8 flex space-x-4">
             <a href="https://qm.qq.com/q/aTXFsufyeI" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center">
                 <i class="fa fa-qq mr-2"></i>
-                QQ聊群
+                QQ群聊
             </a>
             <a href="https://pd.qq.com/g/WarmaFans1026/" target="_blank" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded flex items-center">
                 <i class="fa fa-hashtag mr-2"></i>
@@ -559,7 +560,7 @@
         <div class="max-w-4xl mx-auto backdrop-blur bg-black bg-opacity-10 rounded-lg shadow-lg p-4">
             <h3 class="text-2xl font-semibold mb-6">特色子频道导航</h3>
             <div class="scroll-container">
-                <div class="scroll-item p-4 bg-black backdrop-blur bg-opacity-10 rounded-lg transition-colors hover:bg-opacity-30 hover:backdrop-blur" style="user-select: none;">
+                <div class="scroll-item p-4 bg-black bg-opacity-10 rounded-lg transition-colors hover:bg-opacity-30 hover:backdrop-blur" style="user-select: none;">
                     <h4 class="font-semibold mb-2 text-xl">⭐ 兴趣爱好</h4>
                     <ul class="space-y-1 text-sm">
                         <li>💭「语言Cosplay」</li>
@@ -570,7 +571,7 @@
                     </ul>
                 </div>
 
-                <div class="scroll-item p-4 bg-black backdrop-blur bg-opacity-10 rounded-lg transition-colors hover:bg-opacity-30 hover:backdrop-blur" style="user-select: none;">
+                <div class="scroll-item p-4 bg-black bg-opacity-10 rounded-lg transition-colors hover:bg-opacity-30 hover:backdrop-blur" style="user-select: none;">
                     <h4 class="font-semibold mb-2 text-xl">🎮 游戏天地</h4>
                     <ul class="space-y-1 text-sm">
                         <li>🎵「音游」</li>
@@ -581,7 +582,7 @@
                     </ul>
                 </div>
 
-                <div class="scroll-item p-4 bg-black backdrop-blur bg-opacity-10 rounded-lg transition-colors hover:bg-opacity-30 hover:backdrop-blur" style="user-select: none;">
+                <div class="scroll-item p-4 bg-black bg-opacity-10 rounded-lg transition-colors hover:bg-opacity-30 hover:backdrop-blur" style="user-select: none;">
                     <h4 class="font-semibold mb-2 text-xl">📚 学习成长</h4>
                     <ul class="space-y-1 text-sm">
                         <li>📚「学习交流」</li>
@@ -614,21 +615,22 @@
         // 汉堡按钮的功能
         const hamburgerButton = document.getElementById('hamburger-button');
         const mobileMenu = document.getElementById('mobile-menu');
-
+    
         hamburgerButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('show');
+            navbar.classList.toggle('bg-semi-transparent', mobileMenu.classList.contains('show'));
         });
-
+    
         // 获取导航栏元素
         const navbar = document.getElementById('header');
-
+    
         const scrollContainer = document.getElementById('main-container');
-
+    
         // 监听滚动事件
         scrollContainer.addEventListener('scroll', () => {
             if (scrollContainer.scrollTop > window.innerHeight) {
                 navbar.classList.add('bg-semi-transparent');
-            } else {
+            } else if (!mobileMenu.classList.contains('show')) {
                 navbar.classList.remove('bg-semi-transparent');
             }
         });
