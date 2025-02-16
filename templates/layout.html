@@ -13,6 +13,12 @@
             background-color: transparent;
         }
 
+        /* 半透明毛玻璃效果 */
+        .bg-semi-transparent {
+            background-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
         /* 添加字体阴影 */
         .text-shadow {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 2px 2px 4px 阴影，颜色为半透明黑色 */
@@ -30,7 +36,6 @@
             right: 0;
             width: 100%;
             height: calc(100vh - 4rem); /* 计算菜单的高度 */
-            background-color: #FCA5A5; /* 背景颜色 */
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
         }
@@ -45,7 +50,7 @@
         }
     </style>
 </head>
-<body class="bg-pink-50">
+<body class="">
     <!-- 定义 SVG 过滤器 -->
     <svg width="0" height="0">
         <defs>
@@ -57,10 +62,10 @@
 
     <!-- 顶部导航栏 -->
     <header class="bg-transparent fixed top-0 left-0 w-full z-50">
-        <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-4">
+        <div id="header" class=" mx-auto flex items-center justify-between px-12 py-4">
             <a href="https://warma.fans">
                 <div class="flex items-center">
-                    <img src="https://pic1.imgdb.cn/item/67af98fdd0e0a243d4ff66ed.jpg" alt="沃玛频道" class="w-8 h-8 rounded-lg">
+                    <img src="https://pic1.imgdb.cn/item/67af98fdd0e0a243d4ff66ed.jpg" alt="沃玛频道" class="w-8 h-8 rounded-lg svg-shadow">
                     <span class="text-2xl text-white ml-2 text-shadow">沃玛频道</span>
                 </div>
             </a>
@@ -70,11 +75,11 @@
                 <ul class="flex space-x-6 text-shadow">
                     {% for key, item in nav_items.items() %}
                         <li class="relative group">
-                            <a href="{{ item['link'] }}" class="hover:bg-white hover:bg-opacity-30 hover:backdrop-blur hover:scale-105 transition duration-300 px-2 py-2 rounded flex items-center ">
+                            <a href="{{ item['link'] }}" class="hover:bg-black hover:bg-opacity-10 hover:backdrop-blur hover:scale-105 transition duration-300 px-2 py-2 rounded flex items-center ">
                                 {{ item['label'] }}
                             </a>
                             {% if item['sub_items'] %}
-                                <div class="absolute hidden group-hover:block bg-white bg-opacity-30 backdrop-blur text-white rounded shadow-lg w-48">
+                                <div class="absolute hidden group-hover:block bg-black bg-opacity-10 backdrop-blur text-white rounded shadow-lg w-48">
                                     <ul>
                                         {% for sub_item in item['sub_items'] %}
                                             <li><a href="{{ sub_item['link'] }}" target="_blank" class="block px-4 py-2 hover:bg-white hover:bg-opacity-40 hover:backdrop-blur border-b border-white-300 rounded flex items-center">
@@ -103,16 +108,16 @@
         </div>
 
         <!-- 菜单栏：移动端使用的折叠菜单 -->
-    <div id="mobile-menu" class="md:hidden text-white py-2">
-        <ul>
+    <div id="mobile-menu" class="md:hidden text-white py-2 ">
+        <ul class="space-y-2 backdrop-blur">
             {% for key, item in nav_items.items() %}
-                <li class="relative group">
-                    <div class="block px-4 py-2 bg-red-300 font-bold">{{ item['label'] }}</div> <!-- 顶级菜单项 -->
+                <li class="relative group bg-black bg-opacity-20 rounded-lg">
+                    <div class="block px-4 py-2 font-bold bg-white bg-opacity-5 rounded-lg">{{ item['label'] }}</div> <!-- 顶级菜单项 -->
                     {% if item['sub_items'] %}
-                        <ul class="pl-4 bg-red-300 shadow-lg"> <!-- 子菜单列表 -->
+                        <ul class="pl-4 shadow-lg"> <!-- 子菜单列表 -->
                             {% for sub_item in item['sub_items'] %}
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="{{ sub_item['link'] }}" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="{{ sub_item['link'] }}" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         {% if sub_item['icon'].startswith('fa-') %}
                                             <i class="fa {{ sub_item['icon'] }} mr-2"></i> <!-- Font Awesome 图标 -->
                                         {% else %}
@@ -141,6 +146,20 @@
 
         hamburgerButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('show');
+        });
+
+        // 获取导航栏元素
+        const navbar = document.getElementById('header');
+
+        const scrollContainer = document.getElementById('main-container');
+
+        // 监听滚动事件
+        scrollContainer.addEventListener('scroll', () => {
+            if (scrollContainer.scrollTop > window.innerHeight) {
+                navbar.classList.add('bg-semi-transparent');
+            } else {
+                navbar.classList.remove('bg-semi-transparent');
+            }
         });
     </script>
 

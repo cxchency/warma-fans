@@ -13,6 +13,12 @@
             background-color: transparent;
         }
 
+        /* 半透明毛玻璃效果 */
+        .bg-semi-transparent {
+            background-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
         /* 添加字体阴影 */
         .text-shadow {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 2px 2px 4px 阴影，颜色为半透明黑色 */
@@ -30,7 +36,6 @@
             right: 0;
             width: 100%;
             height: calc(100vh - 4rem); /* 计算菜单的高度 */
-            background-color: #FCA5A5; /* 背景颜色 */
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
         }
@@ -45,7 +50,7 @@
         }
     </style>
 </head>
-<body class="bg-pink-50">
+<body class="">
     <!-- 定义 SVG 过滤器 -->
     <svg width="0" height="0">
         <defs>
@@ -57,10 +62,10 @@
 
     <!-- 顶部导航栏 -->
     <header class="bg-transparent fixed top-0 left-0 w-full z-50">
-        <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-4">
+        <div id="header" class=" mx-auto flex items-center justify-between px-12 py-4">
             <a href="https://warma.fans">
                 <div class="flex items-center">
-                    <img src="https://pic1.imgdb.cn/item/67af98fdd0e0a243d4ff66ed.jpg" alt="沃玛频道" class="w-8 h-8 rounded-lg">
+                    <img src="https://pic1.imgdb.cn/item/67af98fdd0e0a243d4ff66ed.jpg" alt="沃玛频道" class="w-8 h-8 rounded-lg svg-shadow">
                     <span class="text-2xl text-white ml-2 text-shadow">沃玛频道</span>
                 </div>
             </a>
@@ -70,11 +75,11 @@
                 <ul class="flex space-x-6 text-shadow">
                     
                         <li class="relative group">
-                            <a href="" class="hover:bg-white hover:bg-opacity-30 hover:backdrop-blur hover:scale-105 transition duration-300 px-2 py-2 rounded flex items-center ">
+                            <a href="" class="hover:bg-black hover:bg-opacity-10 hover:backdrop-blur hover:scale-105 transition duration-300 px-2 py-2 rounded flex items-center ">
                                 聊天社区
                             </a>
                             
-                                <div class="absolute hidden group-hover:block bg-white bg-opacity-30 backdrop-blur text-white rounded shadow-lg w-48">
+                                <div class="absolute hidden group-hover:block bg-black bg-opacity-10 backdrop-blur text-white rounded shadow-lg w-48">
                                     <ul>
                                         
                                             <li><a href="https://qm.qq.com/q/aTXFsufyeI" target="_blank" class="block px-4 py-2 hover:bg-white hover:bg-opacity-40 hover:backdrop-blur border-b border-white-300 rounded flex items-center">
@@ -104,11 +109,11 @@
                         </li>
                     
                         <li class="relative group">
-                            <a href="" class="hover:bg-white hover:bg-opacity-30 hover:backdrop-blur hover:scale-105 transition duration-300 px-2 py-2 rounded flex items-center ">
+                            <a href="" class="hover:bg-black hover:bg-opacity-10 hover:backdrop-blur hover:scale-105 transition duration-300 px-2 py-2 rounded flex items-center ">
                                 MC服务器
                             </a>
                             
-                                <div class="absolute hidden group-hover:block bg-white bg-opacity-30 backdrop-blur text-white rounded shadow-lg w-48">
+                                <div class="absolute hidden group-hover:block bg-black bg-opacity-10 backdrop-blur text-white rounded shadow-lg w-48">
                                     <ul>
                                         
                                             <li><a href="https://home.warma.fans/" target="_blank" class="block px-4 py-2 hover:bg-white hover:bg-opacity-40 hover:backdrop-blur border-b border-white-300 rounded flex items-center">
@@ -159,11 +164,11 @@
                         </li>
                     
                         <li class="relative group">
-                            <a href="" class="hover:bg-white hover:bg-opacity-30 hover:backdrop-blur hover:scale-105 transition duration-300 px-2 py-2 rounded flex items-center ">
+                            <a href="" class="hover:bg-black hover:bg-opacity-10 hover:backdrop-blur hover:scale-105 transition duration-300 px-2 py-2 rounded flex items-center ">
                                 Warma
                             </a>
                             
-                                <div class="absolute hidden group-hover:block bg-white bg-opacity-30 backdrop-blur text-white rounded shadow-lg w-48">
+                                <div class="absolute hidden group-hover:block bg-black bg-opacity-10 backdrop-blur text-white rounded shadow-lg w-48">
                                     <ul>
                                         
                                             <li><a href="https://space.bilibili.com/53456" target="_blank" class="block px-4 py-2 hover:bg-white hover:bg-opacity-40 hover:backdrop-blur border-b border-white-300 rounded flex items-center">
@@ -200,11 +205,11 @@
                         </li>
                     
                         <li class="relative group">
-                            <a href="" class="hover:bg-white hover:bg-opacity-30 hover:backdrop-blur hover:scale-105 transition duration-300 px-2 py-2 rounded flex items-center ">
+                            <a href="" class="hover:bg-black hover:bg-opacity-10 hover:backdrop-blur hover:scale-105 transition duration-300 px-2 py-2 rounded flex items-center ">
                                 友情链接
                             </a>
                             
-                                <div class="absolute hidden group-hover:block bg-white bg-opacity-30 backdrop-blur text-white rounded shadow-lg w-48">
+                                <div class="absolute hidden group-hover:block bg-black bg-opacity-10 backdrop-blur text-white rounded shadow-lg w-48">
                                     <ul>
                                         
                                             <li><a href="https://www.bilibili.com/video/BV1sJyUY8EeV/" target="_blank" class="block px-4 py-2 hover:bg-white hover:bg-opacity-40 hover:backdrop-blur border-b border-white-300 rounded flex items-center">
@@ -245,16 +250,16 @@
         </div>
 
         <!-- 菜单栏：移动端使用的折叠菜单 -->
-    <div id="mobile-menu" class="md:hidden text-white py-2">
-        <ul>
+    <div id="mobile-menu" class="md:hidden text-white py-2 ">
+        <ul class="space-y-2 backdrop-blur">
             
-                <li class="relative group">
-                    <div class="block px-4 py-2 bg-red-300 font-bold">聊天社区</div> <!-- 顶级菜单项 -->
+                <li class="relative group bg-black bg-opacity-20 rounded-lg">
+                    <div class="block px-4 py-2 font-bold bg-white bg-opacity-5 rounded-lg">聊天社区</div> <!-- 顶级菜单项 -->
                     
-                        <ul class="pl-4 bg-red-300 shadow-lg"> <!-- 子菜单列表 -->
+                        <ul class="pl-4 shadow-lg"> <!-- 子菜单列表 -->
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://qm.qq.com/q/aTXFsufyeI" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://qm.qq.com/q/aTXFsufyeI" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <i class="fa fa-qq mr-2"></i> <!-- Font Awesome 图标 -->
                                         
@@ -263,7 +268,7 @@
                                 </li>
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://pd.qq.com/g/WarmaFans1026/" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://pd.qq.com/g/WarmaFans1026/" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <i class="fa fa-hashtag mr-2"></i> <!-- Font Awesome 图标 -->
                                         
@@ -272,7 +277,7 @@
                                 </li>
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://q.warma.fans/" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://q.warma.fans/" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <i class="fa fa-th-list mr-2"></i> <!-- Font Awesome 图标 -->
                                         
@@ -284,13 +289,13 @@
                     
                 </li>
             
-                <li class="relative group">
-                    <div class="block px-4 py-2 bg-red-300 font-bold">MC服务器</div> <!-- 顶级菜单项 -->
+                <li class="relative group bg-black bg-opacity-20 rounded-lg">
+                    <div class="block px-4 py-2 font-bold bg-white bg-opacity-5 rounded-lg">MC服务器</div> <!-- 顶级菜单项 -->
                     
-                        <ul class="pl-4 bg-red-300 shadow-lg"> <!-- 子菜单列表 -->
+                        <ul class="pl-4 shadow-lg"> <!-- 子菜单列表 -->
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://home.warma.fans/" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://home.warma.fans/" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <i class="fa fa-globe mr-2"></i> <!-- Font Awesome 图标 -->
                                         
@@ -299,7 +304,7 @@
                                 </li>
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://skin.warma.fans/" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://skin.warma.fans/" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <i class="fa fa-paint-brush mr-2"></i> <!-- Font Awesome 图标 -->
                                         
@@ -308,7 +313,7 @@
                                 </li>
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://qm.qq.com/q/jNOV6jH2HS" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://qm.qq.com/q/jNOV6jH2HS" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <i class="fa fa-qq mr-2"></i> <!-- Font Awesome 图标 -->
                                         
@@ -317,7 +322,7 @@
                                 </li>
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://qm.qq.com/q/jdbfkttKEg" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://qm.qq.com/q/jdbfkttKEg" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <i class="fa fa-qq mr-2"></i> <!-- Font Awesome 图标 -->
                                         
@@ -326,7 +331,7 @@
                                 </li>
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://qm.qq.com/q/qDkRfEGcGk" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://qm.qq.com/q/qDkRfEGcGk" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <i class="fa fa-qq mr-2"></i> <!-- Font Awesome 图标 -->
                                         
@@ -335,7 +340,7 @@
                                 </li>
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://docs.warma.fans/" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://docs.warma.fans/" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <i class="fa fa-book mr-2"></i> <!-- Font Awesome 图标 -->
                                         
@@ -347,13 +352,13 @@
                     
                 </li>
             
-                <li class="relative group">
-                    <div class="block px-4 py-2 bg-red-300 font-bold">Warma</div> <!-- 顶级菜单项 -->
+                <li class="relative group bg-black bg-opacity-20 rounded-lg">
+                    <div class="block px-4 py-2 font-bold bg-white bg-opacity-5 rounded-lg">Warma</div> <!-- 顶级菜单项 -->
                     
-                        <ul class="pl-4 bg-red-300 shadow-lg"> <!-- 子菜单列表 -->
+                        <ul class="pl-4 shadow-lg"> <!-- 子菜单列表 -->
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://space.bilibili.com/53456" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://space.bilibili.com/53456" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <img src="https://cdn.simpleicons.org/bilibili/white" alt="B站 @Warma" class="w-4 h-4 mr-2"/> <!-- SVG 图标 -->
                                         
@@ -362,7 +367,7 @@
                                 </li>
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://space.bilibili.com/106320250" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://space.bilibili.com/106320250" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <img src="https://cdn.simpleicons.org/bilibili/white" alt="B站 @warma养鸽场" class="w-4 h-4 mr-2"/> <!-- SVG 图标 -->
                                         
@@ -371,7 +376,7 @@
                                 </li>
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://m.weibo.cn/u/1782488734" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://m.weibo.cn/u/1782488734" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <i class="fa fa-weibo mr-2"></i> <!-- Font Awesome 图标 -->
                                         
@@ -380,7 +385,7 @@
                                 </li>
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://warmania.taobao.com/" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://warmania.taobao.com/" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <i class="fa fa-shopping-cart mr-2"></i> <!-- Font Awesome 图标 -->
                                         
@@ -392,13 +397,13 @@
                     
                 </li>
             
-                <li class="relative group">
-                    <div class="block px-4 py-2 bg-red-300 font-bold">友情链接</div> <!-- 顶级菜单项 -->
+                <li class="relative group bg-black bg-opacity-20 rounded-lg">
+                    <div class="block px-4 py-2 font-bold bg-white bg-opacity-5 rounded-lg">友情链接</div> <!-- 顶级菜单项 -->
                     
-                        <ul class="pl-4 bg-red-300 shadow-lg"> <!-- 子菜单列表 -->
+                        <ul class="pl-4 shadow-lg"> <!-- 子菜单列表 -->
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://www.bilibili.com/video/BV1sJyUY8EeV/" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://www.bilibili.com/video/BV1sJyUY8EeV/" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <img src="https://cdn.simpleicons.org/bilibili/white" alt="沃玛生贺" class="w-4 h-4 mr-2"/> <!-- SVG 图标 -->
                                         
@@ -407,7 +412,7 @@
                                 </li>
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://space.bilibili.com/112978436" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://space.bilibili.com/112978436" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <img src="https://cdn.simpleicons.org/bilibili/white" alt="橙息B站" class="w-4 h-4 mr-2"/> <!-- SVG 图标 -->
                                         
@@ -416,7 +421,7 @@
                                 </li>
                             
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="https://blog.iin0.cn/" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="https://blog.iin0.cn/" class="block px-4 py-2 hover:bg-black hover:backdrop-blur hover:bg-opacity-10 rounded text-xl flex items-center">
                                         
                                             <i class="fa fa-rss mr-2"></i> <!-- Font Awesome 图标 -->
                                         
@@ -439,13 +444,8 @@
     html {
         scroll-behavior: smooth;
     }
-
+    
     /* 隐藏滚动条 */
-    body, html {
-        overflow: hidden;
-    }
-
-    /* 使用 -webkit- 伪元素来隐藏滚动条 */
     ::-webkit-scrollbar {
         display: none;
     }
@@ -453,8 +453,7 @@
     /* 向下滚动提示的样式 */
     .scroll-hint {
         position: absolute;
-        bottom: 2rem; /* 调整高度 */
-        left: 50%;
+        bottom: 4rem; /* 调整高度 */
         transform: translateX(-50%);
         font-size: 1.125rem;
     }
@@ -469,7 +468,14 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+    }
+
+    .bg-image-1 {
         background-image: url("https://pic1.imgdb.cn/item/67b091e1d0e0a243d4ffaa0d.webp");
+    }
+
+    .bg-image-2 {
+        background-image: url("https://pic1.imgdb.cn/item/67b18963d0e0a243d4ffc557.webp");
     }
 
     /* 提示文本默认隐藏 */
@@ -479,7 +485,7 @@
 
     /* 移动端背景图位置调整 */
     @media (max-width: 768px) {
-        .bg-image {
+        .bg-image-1 {
             background-position: 70%;
         }
         .scroll-hint-text {
@@ -510,117 +516,98 @@
 <div class="snap-y snap-mandatory overflow-y-scroll h-screen" id="main-container">
 
     <!-- 首页展示部分 -->
-    <section class="h-screen bg-gradient flex flex-col justify-center items-center text-center text-white snap-start relative bg-image">
+    <section id="section-one" class="h-screen bg-gradient flex flex-col justify-center items-center text-center text-white snap-start relative bg-image bg-image-1">
         <div class="text-shadow">
             <h1 class="text-6xl font-bold">沃玛频道</h1>
-            <p class="text-xl mt-4">一个非官方的<a href="https://space.bilibili.com/53456" target="_blank" class="font-bold"> @Warma </a>同人交流社区</p>
+            <p class="text-xl mt-4">一个非官方的 <a href="https://space.bilibili.com/53456" target="_blank" class="font-bold">@<span class="underline">Warma</span></a> 同人交流社区</p>
         </div>
         <!-- 按钮部分 -->
-        <div class="mt-8 flex space-x-4 text-shadow">
+        <div class="mt-8 flex space-x-4">
             <a href="https://qm.qq.com/q/aTXFsufyeI" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center">
                 <i class="fa fa-qq mr-2"></i>
-                加入Q群
+                QQ聊群
             </a>
             <a href="https://pd.qq.com/g/WarmaFans1026/" target="_blank" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded flex items-center">
                 <i class="fa fa-hashtag mr-2"></i>
-                加入频道
+                QQ频道
             </a>
         </div>
         <!-- 向下滚动提示 -->
-        <div class="scroll-hint">
-            <span>向下滚动查看更多</span>
+        <div class="scroll-hint animate-bounce text-shadow">
+            <span>↓ 向下滚动查看更多 ↓</span>
         </div>
     </section>
 
     <!-- 沃玛频道介绍和子频道部分 -->
-    <section class="h-screen bg-pink-100 text-black snap-start flex flex-col items-center justify-center px-4">
-        <div class="max-w-4xl mx-auto">
-            <div class="bg-white rounded-lg shadow-lg p-6 mt-8">
-                <h3 class="text-2xl font-semibold mb-4 text-gray-800">关于我们</h3>
-                <p class="text-lg leading-relaxed text-gray-700 text-indent">
-                    沃玛频道是由沃玛粉丝共同维护的非官方综合社区，这里有超过<span class="text-pink-500 font-bold">20个兴趣子频道</span>，聚集了<span class="text-pink-500 font-bold">1.5万+</span>志同道合的伙伴。我们致力于打造一个温暖、包容的交流空间，在这里你可以：
-                </p>
-                <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 text-center">
-                    <li class="flex items-center justify-center">❤分享对沃玛的喜爱</li>
-                    <li class="flex items-center justify-center">⭐交流兴趣爱好</li>
-                    <li class="flex items-center justify-center">🍉分享日常生活</li>
-                    <li class="flex items-center justify-center">🎨展示同人创作</li>
-                    <li class="flex items-center justify-center">🎮组队游戏开黑</li>
-                    <li class="flex items-center justify-center">🤝结识有趣伙伴</li>
-                </ul>
-            </div>
+    <section class="overflow-y-auto overflow-x-hidden bg-pink-100 snap-start flex flex-col items-center p-4 bg-image bg-image-2 space-y-6 text-white text-shadow">
+        <div class="max-w-4xl mx-auto backdrop-blur bg-black bg-opacity-10 rounded-lg shadow-lg p-4 mt-20">
+            <h3 class="text-2xl font-semibold mb-4">关于我们</h3>
+            <p class="max-w-2xl mx-auto text-lg leading-relaxed text-indent">
+                沃玛频道是由沃玛粉丝共同维护的非官方综合社区，这里有超过<span class="text-yellow-300 font-bold">20个兴趣子频道</span>，聚集了<span class="text-yellow-300 font-bold">1.5万+</span>志同道合的伙伴。我们致力于打造一个温暖、包容的交流空间，在这里你可以：
+            </p>
+            <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 text-center">
+                <li class="flex items-center justify-center hover:bg-white hover:bg-opacity-30 hover:backdrop-blur hover:scale-105 rounded max-w-xs mx-auto px-1" style="user-select: none;">❤分享对沃玛的喜爱</li>
+                <li class="flex items-center justify-center hover:bg-white hover:bg-opacity-30 hover:backdrop-blur hover:scale-105 rounded max-w-xs mx-auto px-1" style="user-select: none;">⭐交流兴趣爱好</li>
+                <li class="flex items-center justify-center hover:bg-white hover:bg-opacity-30 hover:backdrop-blur hover:scale-105 rounded max-w-xs mx-auto px-1" style="user-select: none;">🍉分享日常生活</li>
+                <li class="flex items-center justify-center hover:bg-white hover:bg-opacity-30 hover:backdrop-blur hover:scale-105 rounded max-w-xs mx-auto px-1" style="user-select: none;">🎨展示同人创作</li>
+                <li class="flex items-center justify-center hover:bg-white hover:bg-opacity-30 hover:backdrop-blur hover:scale-105 rounded max-w-xs mx-auto px-1" style="user-select: none;">🎮组队游戏开黑</li>
+                <li class="flex items-center justify-center hover:bg-white hover:bg-opacity-30 hover:backdrop-blur hover:scale-105 rounded max-w-xs mx-auto px-1" style="user-select: none;">🤝结识有趣伙伴</li>
+            </ul>
         </div>
-    </section>
 
-    <!-- 详细介绍 -->
-    <section class="h-screen bg-yellow-200 text-black snap-start flex flex-col items-center justify-center px-4">
-        <div class="max-w-4xl mx-auto">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h3 class="text-2xl font-semibold mb-6 text-gray-800">特色子频道导航</h3>
-                <div class="scroll-container">
-                    <div class="scroll-item p-4 bg-gray-50 rounded-lg hover:bg-pink-50 transition-colors">
-                        <h4 class="font-semibold mb-2 text-xl">⭐ 兴趣爱好</h4>
-                        <ul class="space-y-1 text-sm">
-                            <li>💭「语言Cosplay」</li>
-                            <li>♠️「思维游戏」</li>
-                            <li>⛩「东方Project」</li>
-                            <li>🎲「娱乐室」</li>
-                            <li>🎧「音乐交流」</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="scroll-item p-4 bg-gray-50 rounded-lg hover:bg-pink-50 transition-colors">
-                        <h4 class="font-semibold mb-2 text-xl">🎮 游戏天地</h4>
-                        <ul class="space-y-1 text-sm">
-                            <li>🎵「音游」</li>
-                            <li>🕵️‍♂️「第五人格」</li>
-                            <li>🏝️「MC服务器」</li>
-                            <li>♟️「明日方舟」</li>
-                            <li>💫「米哈游」</li>
-                        </ul>
-                    </div>
-
-                    <div class="scroll-item p-4 bg-gray-50 rounded-lg hover:bg-pink-50 transition-colors">
-                        <h4 class="font-semibold mb-2 text-xl">📚 学习成长</h4>
-                        <ul class="space-y-1 text-sm">
-                            <li>📚「学习交流」</li>
-                            <li>🎨「画咖」</li>
-                            <li>🖥️「技术交流」</li>
-                        </ul>
-                    </div>
+        <!-- 详细介绍 -->
+        <div class="max-w-4xl mx-auto backdrop-blur bg-black bg-opacity-10 rounded-lg shadow-lg p-4">
+            <h3 class="text-2xl font-semibold mb-6">特色子频道导航</h3>
+            <div class="scroll-container">
+                <div class="scroll-item p-4 bg-black backdrop-blur bg-opacity-10 rounded-lg transition-colors hover:bg-opacity-30 hover:backdrop-blur" style="user-select: none;">
+                    <h4 class="font-semibold mb-2 text-xl">⭐ 兴趣爱好</h4>
+                    <ul class="space-y-1 text-sm">
+                        <li>💭「语言Cosplay」</li>
+                        <li>♠️「思维游戏」</li>
+                        <li>⛩「东方Project」</li>
+                        <li>🎲「娱乐室」</li>
+                        <li>🎧「音乐交流」</li>
+                    </ul>
                 </div>
 
-                <div class="mt-6 text-center">
-                    <p class="text-gray-600 italic">
-                        还有更多特色频道等你发现……<br>
-                    </p>
-                    <p class="mt-4 text-pink-500 font-medium animate-pulse scroll-hint-text">
-                        ← 左右滑动查看更多频道 →
-                    </p>
+                <div class="scroll-item p-4 bg-black backdrop-blur bg-opacity-10 rounded-lg transition-colors hover:bg-opacity-30 hover:backdrop-blur" style="user-select: none;">
+                    <h4 class="font-semibold mb-2 text-xl">🎮 游戏天地</h4>
+                    <ul class="space-y-1 text-sm">
+                        <li>🎵「音游」</li>
+                        <li>🕵️‍♂️「第五人格」</li>
+                        <li>🏝️「MC服务器」</li>
+                        <li>♟️「明日方舟」</li>
+                        <li>💫「米哈游」</li>
+                    </ul>
+                </div>
+
+                <div class="scroll-item p-4 bg-black backdrop-blur bg-opacity-10 rounded-lg transition-colors hover:bg-opacity-30 hover:backdrop-blur" style="user-select: none;">
+                    <h4 class="font-semibold mb-2 text-xl">📚 学习成长</h4>
+                    <ul class="space-y-1 text-sm">
+                        <li>📚「学习交流」</li>
+                        <li>🎨「画咖」</li>
+                        <li>🖥️「技术交流」</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- 其他内容部分 -->
-    <section class="h-screen bg-blue-200 text-center text-black snap-start pt-24">
-        <h2 class="text-4xl font-bold">其他内容</h2>
-        <p class="text-xl mt-4">这里是其他相关内容。</p>
+            <div class="mt-6 text-center">
+                <p class="italic">
+                    还有更多特色频道等你发现……<br>
+                </p> 
+            </div>
+        </div>
+        <footer class="bg-gray-800 text-white text-center py-4"></footer>
+            <p>&copy; 2025 沃玛频道</p>
+        </footer>
+        <div class="p-8"></div>
+            <!-- 占位符 -->
+        </div>
     </section>
 </div>
 
-<script>
-    function adjustSectionHeight() {
-        const sections = document.querySelectorAll('section');
-        const windowHeight = window.innerHeight;
-        sections.forEach(section => {
-            section.style.height = `${windowHeight}px`;
-        });
-    }
 
-    window.addEventListener('resize', adjustSectionHeight);
-    window.addEventListener('load', adjustSectionHeight);
-</script>
+        
 
 
     <script>
@@ -630,6 +617,20 @@
 
         hamburgerButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('show');
+        });
+
+        // 获取导航栏元素
+        const navbar = document.getElementById('header');
+
+        const scrollContainer = document.getElementById('main-container');
+
+        // 监听滚动事件
+        scrollContainer.addEventListener('scroll', () => {
+            if (scrollContainer.scrollTop > window.innerHeight) {
+                navbar.classList.add('bg-semi-transparent');
+            } else {
+                navbar.classList.remove('bg-semi-transparent');
+            }
         });
     </script>
 
