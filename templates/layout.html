@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>沃玛频道</title>
+    <meta name="description" content="一个非官方的Warma同人交流社区">
+    <meta name="keywords" content="沃玛, Warma, 沃玛频道, Warma频道, 沃玛粉丝群, Warma粉丝群">
+    <meta name="robots" content="index, follow">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://pic1.imgdb.cn/item/67af9b74d0e0a243d4ff689c.png" rel="icon" type="image/png">
@@ -141,19 +144,19 @@
     {% block content %}{% endblock %}
 
     <script>
-        // 汉堡按钮的功能
-        const hamburgerButton = document.getElementById('hamburger-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-    
-        hamburgerButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('show');
-            navbar.classList.toggle('bg-semi-transparent', mobileMenu.classList.contains('show'));
-        });
-    
         // 获取导航栏元素
         const navbar = document.getElementById('header');
-    
+        const hamburgerButton = document.getElementById('hamburger-button');
+        const mobileMenu = document.getElementById('mobile-menu');
         const scrollContainer = document.getElementById('main-container');
+    
+        // 汉堡按钮的功能
+        hamburgerButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('show');
+            if (scrollContainer.scrollTop <= window.innerHeight) {
+                navbar.classList.toggle('bg-semi-transparent', mobileMenu.classList.contains('show'));
+            }
+        });
     
         // 监听滚动事件
         scrollContainer.addEventListener('scroll', () => {
