@@ -15,7 +15,7 @@
 
         /* 添加字体阴影 */
         .text-shadow {
-
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 2px 2px 4px 阴影，颜色为半透明黑色 */
         }
         
         .svg-shadow {
@@ -58,17 +58,17 @@
     </svg>
 
     <!-- 顶部导航栏 -->
-    <header class="bg-[#F1DDE6]/50 backdrop-blur-sm fixed top-0 left-0 w-full z-50">
+    <header class="bg-[#E674A7]/50 backdrop-blur-sm fixed top-0 left-0 w-full z-50">
         <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-4">
             <a href="{{ url_for('index') }}">
                 <div class="flex items-center">
                     <img src="https://pic1.imgdb.cn/item/67af98fdd0e0a243d4ff66ed.jpg" alt="沃玛频道" class="w-8 h-8 rounded-lg">
-                    <span class="text-2xl text-[#3B1426] ml-2 text-shadow">沃玛频道</span>
+                    <span class="text-2xl text-[#F1DDE6] ml-2 text-shadow">沃玛频道</span>
                 </div>
             </a>
             
             <!-- 使用响应式布局控制导航栏显示 -->
-            <nav class="hidden md:flex space-x-6 text-[#3B1426]">
+            <nav class="hidden md:flex space-x-6 text-[#F1DDE6]">
                 <ul class="flex space-x-6 text-shadow">
                     {% for key, item in nav_items.items() %}
                         <li class="relative group">
@@ -99,7 +99,7 @@
             <!-- 汉堡按钮：在屏幕较小的时候显示 -->
 
             <div class="md:hidden flex items-center">
-                <button id="hamburger-button" class="text-[#3B1426] text-2xl">
+                <button id="hamburger-button" class="text-[#F1DDE6] text-2xl">
                     <i class="fa fa-bars"></i>
                 </button>
             </div>
