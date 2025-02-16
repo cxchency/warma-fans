@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>沃玛频道</title>
+    <meta name="description" content="一个非官方的Warma同人交流社区">
+    <meta name="keywords" content="沃玛, Warma, 沃玛频道, Warma频道, 沃玛粉丝群, Warma粉丝群">
+    <meta name="robots" content="index, follow">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://pic1.imgdb.cn/item/67af9b74d0e0a243d4ff689c.png" rel="icon" type="image/png">
@@ -501,10 +504,26 @@
     /* 子频道部分左右滑动 */
     .scroll-container {
         display: flex;
-        overflow-x: auto;
+        overflow-x: scroll;
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
+        scrollbar-width: thin; /* Firefox */
+        padding-bottom: 1rem; /* 调整底部间距 */
     }
+
+    .scroll-container::-webkit-scrollbar {
+        height: 24px; /* 对于 Chrome, Safari 和 Edge */
+    }
+    
+    .scroll-container::-webkit-scrollbar-thumb {
+        background: #444; /* 滚动条的颜色 */
+        border-radius: 12px; /* 滚动条圆角 */
+    }
+    
+    .scroll-container::-webkit-scrollbar-thumb:hover {
+        background: #222; /* 滚动条在悬停时的颜色 */
+    }
+    
 
     .scroll-item {
         flex: 0 0 auto;
@@ -558,15 +577,16 @@
 
         <!-- 详细介绍 -->
         <div class="max-w-4xl mx-auto backdrop-blur bg-black bg-opacity-10 rounded-lg shadow-lg p-4">
-            <h3 class="text-2xl font-semibold mb-6">特色子频道导航</h3>
+            <h3 class="text-2xl font-semibold mb-6">特色子频道列表</h3>
             <div class="scroll-container">
                 <div class="scroll-item p-4 bg-black bg-opacity-10 rounded-lg transition-colors hover:bg-opacity-30 hover:backdrop-blur" style="user-select: none;">
                     <h4 class="font-semibold mb-2 text-xl">⭐ 兴趣爱好</h4>
                     <ul class="space-y-1 text-sm">
+                        <li>🎲「娱乐室」</li>
                         <li>💭「语言Cosplay」</li>
                         <li>♠️「思维游戏」</li>
                         <li>⛩「东方Project」</li>
-                        <li>🎲「娱乐室」</li>
+                        
                         <li>🎧「音乐交流」</li>
                     </ul>
                 </div>
@@ -575,18 +595,18 @@
                     <h4 class="font-semibold mb-2 text-xl">🎮 游戏天地</h4>
                     <ul class="space-y-1 text-sm">
                         <li>🎵「音游」</li>
-                        <li>🕵️‍♂️「第五人格」</li>
                         <li>🏝️「MC服务器」</li>
                         <li>♟️「明日方舟」</li>
                         <li>💫「米哈游」</li>
+                        <li>🕵️‍♂️「第五人格」</li>
                     </ul>
                 </div>
 
                 <div class="scroll-item p-4 bg-black bg-opacity-10 rounded-lg transition-colors hover:bg-opacity-30 hover:backdrop-blur" style="user-select: none;">
                     <h4 class="font-semibold mb-2 text-xl">📚 学习成长</h4>
                     <ul class="space-y-1 text-sm">
-                        <li>📚「学习交流」</li>
                         <li>🎨「画咖」</li>
+                        <li>📚「学习交流」</li>
                         <li>🖥️「技术交流」</li>
                     </ul>
                 </div>
@@ -612,19 +632,19 @@
 
 
     <script>
-        // 汉堡按钮的功能
-        const hamburgerButton = document.getElementById('hamburger-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-    
-        hamburgerButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('show');
-            navbar.classList.toggle('bg-semi-transparent', mobileMenu.classList.contains('show'));
-        });
-    
         // 获取导航栏元素
         const navbar = document.getElementById('header');
-    
+        const hamburgerButton = document.getElementById('hamburger-button');
+        const mobileMenu = document.getElementById('mobile-menu');
         const scrollContainer = document.getElementById('main-container');
+    
+        // 汉堡按钮的功能
+        hamburgerButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('show');
+            if (scrollContainer.scrollTop <= window.innerHeight) {
+                navbar.classList.toggle('bg-semi-transparent', mobileMenu.classList.contains('show'));
+            }
+        });
     
         // 监听滚动事件
         scrollContainer.addEventListener('scroll', () => {
