@@ -1,0 +1,922 @@
+[
+    [
+        {
+            "rgb": [
+                251,
+                249,
+                248
+            ],
+            "hex": "#fbf9f8",
+            "complementary_rgb": [
+                4,
+                6,
+                7
+            ],
+            "complementary_hex": "#040607"
+        },
+        {
+            "rgb": [
+                241,
+                222,
+                221
+            ],
+            "hex": "#f1dedd",
+            "complementary_rgb": [
+                14,
+                33,
+                34
+            ],
+            "complementary_hex": "#0e2122"
+        },
+        {
+            "rgb": [
+                233,
+                192,
+                190
+            ],
+            "hex": "#e9c0be",
+            "complementary_rgb": [
+                22,
+                63,
+                65
+            ],
+            "complementary_hex": "#163f41"
+        },
+        {
+            "rgb": [
+                230,
+                159,
+                155
+            ],
+            "hex": "#e69f9b",
+            "complementary_rgb": [
+                25,
+                96,
+                100
+            ],
+            "complementary_hex": "#196064"
+        },
+        {
+            "rgb": [
+                230,
+                122,
+                116
+            ],
+            "hex": "#e67a74",
+            "complementary_rgb": [
+                25,
+                133,
+                139
+            ],
+            "complementary_hex": "#19858b"
+        },
+        {
+            "rgb": [
+                235,
+                83,
+                74
+            ],
+            "hex": "#eb534a",
+            "complementary_rgb": [
+                20,
+                172,
+                181
+            ],
+            "complementary_hex": "#14acb5"
+        },
+        {
+            "rgb": [
+                242,
+                39,
+                28
+            ],
+            "hex": "#f2271c",
+            "complementary_rgb": [
+                13,
+                216,
+                227
+            ],
+            "complementary_hex": "#0dd8e3"
+        },
+        {
+            "rgb": [
+                218,
+                25,
+                14
+            ],
+            "hex": "#da190e",
+            "complementary_rgb": [
+                37,
+                230,
+                241
+            ],
+            "complementary_hex": "#25e6f1"
+        },
+        {
+            "rgb": [
+                172,
+                30,
+                22
+            ],
+            "hex": "#ac1e16",
+            "complementary_rgb": [
+                83,
+                225,
+                233
+            ],
+            "complementary_hex": "#53e1e9"
+        },
+        {
+            "rgb": [
+                131,
+                31,
+                25
+            ],
+            "hex": "#831f19",
+            "complementary_rgb": [
+                124,
+                224,
+                230
+            ],
+            "complementary_hex": "#7ce0e6"
+        },
+        {
+            "rgb": [
+                93,
+                28,
+                25
+            ],
+            "hex": "#5d1c19",
+            "complementary_rgb": [
+                162,
+                227,
+                230
+            ],
+            "complementary_hex": "#a2e3e6"
+        },
+        {
+            "rgb": [
+                59,
+                22,
+                20
+            ],
+            "hex": "#3b1614",
+            "complementary_rgb": [
+                196,
+                233,
+                235
+            ],
+            "complementary_hex": "#c4e9eb"
+        },
+        {
+            "rgb": [
+                28,
+                13,
+                13
+            ],
+            "hex": "#1c0d0d",
+            "complementary_rgb": [
+                227,
+                242,
+                242
+            ],
+            "complementary_hex": "#e3f2f2"
+        }
+    ],
+    [
+        {
+            "rgb": [
+                251,
+                250,
+                248
+            ],
+            "hex": "#fbfaf8",
+            "complementary_rgb": [
+                4,
+                5,
+                7
+            ],
+            "complementary_hex": "#040507"
+        },
+        {
+            "rgb": [
+                241,
+                232,
+                221
+            ],
+            "hex": "#f1e8dd",
+            "complementary_rgb": [
+                14,
+                23,
+                34
+            ],
+            "complementary_hex": "#0e1722"
+        },
+        {
+            "rgb": [
+                233,
+                214,
+                190
+            ],
+            "hex": "#e9d6be",
+            "complementary_rgb": [
+                22,
+                41,
+                65
+            ],
+            "complementary_hex": "#162941"
+        },
+        {
+            "rgb": [
+                230,
+                197,
+                155
+            ],
+            "hex": "#e6c59b",
+            "complementary_rgb": [
+                25,
+                58,
+                100
+            ],
+            "complementary_hex": "#193a64"
+        },
+        {
+            "rgb": [
+                230,
+                179,
+                116
+            ],
+            "hex": "#e6b374",
+            "complementary_rgb": [
+                25,
+                76,
+                139
+            ],
+            "complementary_hex": "#194c8b"
+        },
+        {
+            "rgb": [
+                235,
+                163,
+                74
+            ],
+            "hex": "#eba34a",
+            "complementary_rgb": [
+                20,
+                92,
+                181
+            ],
+            "complementary_hex": "#145cb5"
+        },
+        {
+            "rgb": [
+                242,
+                147,
+                28
+            ],
+            "hex": "#f2931c",
+            "complementary_rgb": [
+                13,
+                108,
+                227
+            ],
+            "complementary_hex": "#0d6ce3"
+        },
+        {
+            "rgb": [
+                218,
+                127,
+                14
+            ],
+            "hex": "#da7f0e",
+            "complementary_rgb": [
+                37,
+                128,
+                241
+            ],
+            "complementary_hex": "#2580f1"
+        },
+        {
+            "rgb": [
+                172,
+                105,
+                22
+            ],
+            "hex": "#ac6916",
+            "complementary_rgb": [
+                83,
+                150,
+                233
+            ],
+            "complementary_hex": "#5396e9"
+        },
+        {
+            "rgb": [
+                131,
+                83,
+                25
+            ],
+            "hex": "#835319",
+            "complementary_rgb": [
+                124,
+                172,
+                230
+            ],
+            "complementary_hex": "#7cace6"
+        },
+        {
+            "rgb": [
+                93,
+                62,
+                25
+            ],
+            "hex": "#5d3e19",
+            "complementary_rgb": [
+                162,
+                193,
+                230
+            ],
+            "complementary_hex": "#a2c1e6"
+        },
+        {
+            "rgb": [
+                59,
+                42,
+                20
+            ],
+            "hex": "#3b2a14",
+            "complementary_rgb": [
+                196,
+                213,
+                235
+            ],
+            "complementary_hex": "#c4d5eb"
+        },
+        {
+            "rgb": [
+                28,
+                21,
+                13
+            ],
+            "hex": "#1c150d",
+            "complementary_rgb": [
+                227,
+                234,
+                242
+            ],
+            "complementary_hex": "#e3eaf2"
+        }
+    ],
+    [
+        {
+            "rgb": [
+                251,
+                248,
+                250
+            ],
+            "hex": "#fbf8fa",
+            "complementary_rgb": [
+                4,
+                7,
+                5
+            ],
+            "complementary_hex": "#040705"
+        },
+        {
+            "rgb": [
+                241,
+                221,
+                230
+            ],
+            "hex": "#f1dde6",
+            "complementary_rgb": [
+                14,
+                34,
+                25
+            ],
+            "complementary_hex": "#0e2219"
+        },
+        {
+            "rgb": [
+                233,
+                190,
+                209
+            ],
+            "hex": "#e9bed1",
+            "complementary_rgb": [
+                22,
+                65,
+                46
+            ],
+            "complementary_hex": "#16412e"
+        },
+        {
+            "rgb": [
+                230,
+                155,
+                189
+            ],
+            "hex": "#e69bbd",
+            "complementary_rgb": [
+                25,
+                100,
+                66
+            ],
+            "complementary_hex": "#196442"
+        },
+        {
+            "rgb": [
+                230,
+                116,
+                167
+            ],
+            "hex": "#e674a7",
+            "complementary_rgb": [
+                25,
+                139,
+                88
+            ],
+            "complementary_hex": "#198b58"
+        },
+        {
+            "rgb": [
+                235,
+                74,
+                146
+            ],
+            "hex": "#eb4a92",
+            "complementary_rgb": [
+                20,
+                181,
+                109
+            ],
+            "complementary_hex": "#14b56d"
+        },
+        {
+            "rgb": [
+                242,
+                28,
+                124
+            ],
+            "hex": "#f21c7c",
+            "complementary_rgb": [
+                13,
+                227,
+                131
+            ],
+            "complementary_hex": "#0de383"
+        },
+        {
+            "rgb": [
+                218,
+                14,
+                105
+            ],
+            "hex": "#da0e69",
+            "complementary_rgb": [
+                37,
+                241,
+                150
+            ],
+            "complementary_hex": "#25f196"
+        },
+        {
+            "rgb": [
+                172,
+                22,
+                89
+            ],
+            "hex": "#ac1659",
+            "complementary_rgb": [
+                83,
+                233,
+                166
+            ],
+            "complementary_hex": "#53e9a6"
+        },
+        {
+            "rgb": [
+                131,
+                25,
+                72
+            ],
+            "hex": "#831948",
+            "complementary_rgb": [
+                124,
+                230,
+                183
+            ],
+            "complementary_hex": "#7ce6b7"
+        },
+        {
+            "rgb": [
+                93,
+                25,
+                55
+            ],
+            "hex": "#5d1937",
+            "complementary_rgb": [
+                162,
+                230,
+                200
+            ],
+            "complementary_hex": "#a2e6c8"
+        },
+        {
+            "rgb": [
+                59,
+                20,
+                37
+            ],
+            "hex": "#3b1425",
+            "complementary_rgb": [
+                196,
+                235,
+                218
+            ],
+            "complementary_hex": "#c4ebda"
+        },
+        {
+            "rgb": [
+                28,
+                13,
+                20
+            ],
+            "hex": "#1c0d14",
+            "complementary_rgb": [
+                227,
+                242,
+                235
+            ],
+            "complementary_hex": "#e3f2eb"
+        }
+    ],
+    [
+        {
+            "rgb": [
+                248,
+                251,
+                250
+            ],
+            "hex": "#f8fbfa",
+            "complementary_rgb": [
+                7,
+                4,
+                5
+            ],
+            "complementary_hex": "#070405"
+        },
+        {
+            "rgb": [
+                221,
+                241,
+                232
+            ],
+            "hex": "#ddf1e8",
+            "complementary_rgb": [
+                34,
+                14,
+                23
+            ],
+            "complementary_hex": "#220e17"
+        },
+        {
+            "rgb": [
+                190,
+                233,
+                214
+            ],
+            "hex": "#bee9d6",
+            "complementary_rgb": [
+                65,
+                22,
+                41
+            ],
+            "complementary_hex": "#411629"
+        },
+        {
+            "rgb": [
+                155,
+                230,
+                197
+            ],
+            "hex": "#9be6c5",
+            "complementary_rgb": [
+                100,
+                25,
+                58
+            ],
+            "complementary_hex": "#64193a"
+        },
+        {
+            "rgb": [
+                116,
+                230,
+                179
+            ],
+            "hex": "#74e6b3",
+            "complementary_rgb": [
+                139,
+                25,
+                76
+            ],
+            "complementary_hex": "#8b194c"
+        },
+        {
+            "rgb": [
+                74,
+                235,
+                163
+            ],
+            "hex": "#4aeba3",
+            "complementary_rgb": [
+                181,
+                20,
+                92
+            ],
+            "complementary_hex": "#b5145c"
+        },
+        {
+            "rgb": [
+                28,
+                242,
+                147
+            ],
+            "hex": "#1cf293",
+            "complementary_rgb": [
+                227,
+                13,
+                108
+            ],
+            "complementary_hex": "#e30d6c"
+        },
+        {
+            "rgb": [
+                14,
+                218,
+                127
+            ],
+            "hex": "#0eda7f",
+            "complementary_rgb": [
+                241,
+                37,
+                128
+            ],
+            "complementary_hex": "#f12580"
+        },
+        {
+            "rgb": [
+                22,
+                172,
+                105
+            ],
+            "hex": "#16ac69",
+            "complementary_rgb": [
+                233,
+                83,
+                150
+            ],
+            "complementary_hex": "#e95396"
+        },
+        {
+            "rgb": [
+                25,
+                131,
+                83
+            ],
+            "hex": "#198353",
+            "complementary_rgb": [
+                230,
+                124,
+                172
+            ],
+            "complementary_hex": "#e67cac"
+        },
+        {
+            "rgb": [
+                25,
+                93,
+                62
+            ],
+            "hex": "#195d3e",
+            "complementary_rgb": [
+                230,
+                162,
+                193
+            ],
+            "complementary_hex": "#e6a2c1"
+        },
+        {
+            "rgb": [
+                20,
+                59,
+                42
+            ],
+            "hex": "#143b2a",
+            "complementary_rgb": [
+                235,
+                196,
+                213
+            ],
+            "complementary_hex": "#ebc4d5"
+        },
+        {
+            "rgb": [
+                13,
+                28,
+                21
+            ],
+            "hex": "#0d1c15",
+            "complementary_rgb": [
+                242,
+                227,
+                234
+            ],
+            "complementary_hex": "#f2e3ea"
+        }
+    ],
+    [
+        {
+            "rgb": [
+                248,
+                250,
+                251
+            ],
+            "hex": "#f8fafb",
+            "complementary_rgb": [
+                7,
+                5,
+                4
+            ],
+            "complementary_hex": "#070504"
+        },
+        {
+            "rgb": [
+                221,
+                230,
+                241
+            ],
+            "hex": "#dde6f1",
+            "complementary_rgb": [
+                34,
+                25,
+                14
+            ],
+            "complementary_hex": "#22190e"
+        },
+        {
+            "rgb": [
+                190,
+                209,
+                233
+            ],
+            "hex": "#bed1e9",
+            "complementary_rgb": [
+                65,
+                46,
+                22
+            ],
+            "complementary_hex": "#412e16"
+        },
+        {
+            "rgb": [
+                155,
+                189,
+                230
+            ],
+            "hex": "#9bbde6",
+            "complementary_rgb": [
+                100,
+                66,
+                25
+            ],
+            "complementary_hex": "#644219"
+        },
+        {
+            "rgb": [
+                116,
+                167,
+                230
+            ],
+            "hex": "#74a7e6",
+            "complementary_rgb": [
+                139,
+                88,
+                25
+            ],
+            "complementary_hex": "#8b5819"
+        },
+        {
+            "rgb": [
+                74,
+                146,
+                235
+            ],
+            "hex": "#4a92eb",
+            "complementary_rgb": [
+                181,
+                109,
+                20
+            ],
+            "complementary_hex": "#b56d14"
+        },
+        {
+            "rgb": [
+                28,
+                124,
+                242
+            ],
+            "hex": "#1c7cf2",
+            "complementary_rgb": [
+                227,
+                131,
+                13
+            ],
+            "complementary_hex": "#e3830d"
+        },
+        {
+            "rgb": [
+                14,
+                105,
+                218
+            ],
+            "hex": "#0e69da",
+            "complementary_rgb": [
+                241,
+                150,
+                37
+            ],
+            "complementary_hex": "#f19625"
+        },
+        {
+            "rgb": [
+                22,
+                89,
+                172
+            ],
+            "hex": "#1659ac",
+            "complementary_rgb": [
+                233,
+                166,
+                83
+            ],
+            "complementary_hex": "#e9a653"
+        },
+        {
+            "rgb": [
+                25,
+                72,
+                131
+            ],
+            "hex": "#194883",
+            "complementary_rgb": [
+                230,
+                183,
+                124
+            ],
+            "complementary_hex": "#e6b77c"
+        },
+        {
+            "rgb": [
+                25,
+                55,
+                93
+            ],
+            "hex": "#19375d",
+            "complementary_rgb": [
+                230,
+                200,
+                162
+            ],
+            "complementary_hex": "#e6c8a2"
+        },
+        {
+            "rgb": [
+                20,
+                37,
+                59
+            ],
+            "hex": "#14253b",
+            "complementary_rgb": [
+                235,
+                218,
+                196
+            ],
+            "complementary_hex": "#ebdac4"
+        },
+        {
+            "rgb": [
+                13,
+                20,
+                28
+            ],
+            "hex": "#0d141c",
+            "complementary_rgb": [
+                242,
+                235,
+                227
+            ],
+            "complementary_hex": "#f2ebe3"
+        }
+    ]
+]
