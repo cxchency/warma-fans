@@ -1,11 +1,19 @@
 from PIL import Image, ImageDraw
 import colorsys
+import json
 
 def hex_to_rgb(hex_color):
     hex_color = hex_color.lstrip('#f6cec1')
     return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
 
-def generate_palette_image(hex_color, output_path):
+def rgb_to_hex(rgb):
+    return '#{:02x}{:02x}{:02x}'.format(*rgb)
+
+def get_complementary_color(rgb):
+    # 计算反色
+    return tuple(255 - c for c in rgb)
+
+def generate_palette_image(hex_color, output_path, json_output_path):
     # 转换颜色空间
     r, g, b = hex_to_rgb(hex_color)
     h, l, s = colorsys.rgb_to_hls(r/255, g/255, b/255)
@@ -59,5 +67,25 @@ def generate_palette_image(hex_color, output_path):
 
     img.save(output_path, 'JPEG', quality=95)
 
+    # 生成颜色信息并保存为JSON
+    color_info = []
+    for palette_idx in range(5):
+        palette_colors = []
+        for color_idx in range(13):
+            rgb = all_colors[palette_idx][color_idx]
+            hex_color = rgb_to_hex(rgb)
+            complementary_rgb = get_complementary_color(rgb)
+            complementary_hex = rgb_to_hex(complementary_rgb)
+            palette_colors.append({
+                'rgb': rgb,
+                'hex': hex_color,
+                'complementary_rgb': complementary_rgb,
+                'complementary_hex': complementary_hex
+            })
+        color_info.append(palette_colors)
+
+    with open(json_output_path, 'w') as f:
+        json.dump(color_info, f, indent=4)
+
 # 使用示例
-generate_palette_image('#6750A4', 'material_you_palette.jpg')
+generate_palette_image('#6750A4', 'material_you_palette.jpg', 'material_you_palette.json')

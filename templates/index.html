@@ -70,6 +70,9 @@
         scroll-snap-align: start;
         margin-right: 1rem; /* 调整间距 */
     }
+    html {
+        transition: all 0.3s ease;
+    }
 </style>
 
 <!-- 整个页面使用滚动对齐 -->
@@ -174,24 +177,124 @@
         <p class="text-xl mt-4">这里是其他相关内容。</p>
     </section>
 </div>
-<script defer>
-// 颜色转换工具函数
-const hexToRgb = hex => {
-    hex = hex.replace(/^#/, '');
-    const bigint = parseInt(hex, 16);
-    return {
-        r: (bigint >> 16) & 255,
-        g: (bigint >> 8) & 255,
-        b: bigint & 255
-    };
-};
+<button class="fixed bottom-4 right-4 bg-[#3B1426] text-[#F1DDE6] px-4 py-2 rounded" onclick="applyDarkMode()">🌙</button>
 
-const rgbToHsl = (r, g, b) => {
+<script>
+    //深色模式
+async function applyDarkMode() {
+    // 获取颜色配置
+    const response = await fetch('http://zk.jingbing.icu/json/material_you_palette.json');
+    const palettes = await response.json();
+    
+    // 创建颜色映射表（原色 -> 亮度相反的颜色）
+    const colorMap = new Map();
+    palettes.forEach(palette => {
+        palette.forEach(color => {
+            // 原始颜色
+            const origHex = color.hex.toLowerCase();
+            const origRgb = `rgb(${color.rgb.join(',')})`; // 注意：修复了 RGB 格式
+            const origRgbNoSpace = origRgb.replace(/\s+/g, ''); // 去除空格
+            
+            // 计算亮度相反的颜色
+            const compHex = getOppositeBrightnessColor(origHex);
+            const compRgb = getOppositeBrightnessColor(origRgb);
+            
+            // 建立映射关系
+            colorMap.set(origHex, compHex);
+            colorMap.set(origRgb, compRgb);
+            colorMap.set(origRgbNoSpace, compRgb); // 支持无空格的 RGB 格式
+        });
+    });
+
+    // 打印颜色映射表以调试
+    console.log('颜色映射表:', [...colorMap.entries()]);
+
+    // 统计变量
+    let totalElements = 0;
+    let replacedElements = 0;
+
+    // 替换所有元素的类名颜色
+    document.querySelectorAll('*').forEach(element => {
+        totalElements++;
+        let hasReplaced = false;
+        const newClasses = Array.from(element.classList).map(className => {
+            // 匹配 tailwind 颜色类名格式（如 bg-[#123456]/50）
+            const match = className.match(/^(\w+)-\[([#]?[a-fA-F0-9]{3,8}|rgb\(.+?\))\](?:\/(\d+))?/);
+            if (!match) return className;
+
+            const [full, prefix, colorValue, opacity] = match;
+            const normalizedColor = colorValue.toLowerCase().replace(/\s+/g, ''); // 去除空格
+            
+            // 查找对应的亮度相反颜色
+            if (colorMap.has(normalizedColor)) {
+                hasReplaced = true;
+                const newColor = colorMap.get(normalizedColor);
+                return opacity ? `${prefix}-[${newColor}]/${opacity}` : `${prefix}-[${newColor}]`;
+            } else {
+                // 动态计算亮度相反颜色
+                const oppositeColor = getOppositeBrightnessColor(normalizedColor);
+                if (oppositeColor) {
+                    hasReplaced = true;
+                    return opacity ? `${prefix}-[${oppositeColor}]/${opacity}` : `${prefix}-[${oppositeColor}]`;
+                } else {
+                    console.warn(`未找到匹配的颜色: ${normalizedColor}`, element);
+                }
+            }
+            return className;
+        });
+
+        if (hasReplaced) {
+            replacedElements++;
+            element.className = newClasses.join(' ');
+        }
+    });
+
+    // 输出统计信息
+    console.log(`搜索到 ${totalElements} 个元素，替换了 ${replacedElements} 个元素的类名`);
+}
+
+// 动态计算亮度相反颜色
+function getOppositeBrightnessColor(color) {
+    if (color.startsWith('#')) {
+        // HEX 格式
+        const rgb = hexToRgb(color);
+        const hsl = rgbToHsl(rgb[0], rgb[1], rgb[2]);
+        hsl[2] = 100 - hsl[2]; // 反转亮度
+        const newRgb = hslToRgb(hsl[0], hsl[1], hsl[2]);
+        return rgbToHex(newRgb[0], newRgb[1], newRgb[2]);
+    } else if (color.startsWith('rgb')) {
+        // RGB 格式
+        const rgb = color.match(/\d+/g).map(Number);
+        const hsl = rgbToHsl(rgb[0], rgb[1], rgb[2]);
+        hsl[2] = 100 - hsl[2]; // 反转亮度
+        const newRgb = hslToRgb(hsl[0], hsl[1], hsl[2]);
+        return `rgb(${newRgb[0]},${newRgb[1]},${newRgb[2]})`;
+    }
+    return null;
+}
+
+// HEX 转 RGB
+function hexToRgb(hex) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return [r, g, b];
+}
+
+// RGB 转 HEX
+function rgbToHex(r, g, b) {
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+}
+
+// RGB 转 HSL
+function rgbToHsl(r, g, b) {
     r /= 255, g /= 255, b /= 255;
     const max = Math.max(r, g, b), min = Math.min(r, g, b);
     let h, s, l = (max + min) / 2;
 
-    if (max !== min) {
+    if (max === min) {
+        h = s = 0; // 灰度
+    } else {
         const d = max - min;
         s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
         switch (max) {
@@ -201,191 +304,130 @@ const rgbToHsl = (r, g, b) => {
         }
         h /= 6;
     }
-    return { h: h * 360, s: s * 100, l: l * 100 };
-};
 
-const hslToRgb = (h, s, l) => {
+    return [h * 360, s * 100, l * 100];
+}
+
+// HSL 转 RGB
+function hslToRgb(h, s, l) {
     h /= 360, s /= 100, l /= 100;
     let r, g, b;
 
     if (s === 0) {
-        r = g = b = l;
+        r = g = b = l; // 灰度
     } else {
         const hue2rgb = (p, q, t) => {
             if (t < 0) t += 1;
             if (t > 1) t -= 1;
-            if (t < 1/6) return p + (q - p) * 6 * t;
-            if (t < 1/2) return q;
-            if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+            if (t < 1 / 6) return p + (q - p) * 6 * t;
+            if (t < 1 / 2) return q;
+            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
             return p;
         };
         const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
         const p = 2 * l - q;
-        r = hue2rgb(p, q, h + 1/3);
+        r = hue2rgb(p, q, h + 1 / 3);
         g = hue2rgb(p, q, h);
-        b = hue2rgb(p, q, h - 1/3);
+        b = hue2rgb(p, q, h - 1 / 3);
     }
-    return {
-        r: Math.round(r * 255),
-        g: Math.round(g * 255),
-        b: Math.round(b * 255)
-    };
-};
 
-// 生成Material You调色板
-const generatePalettes = baseHex => {
-    const { r, g, b } = hexToRgb(baseHex);
-    const { h: baseH, s: baseS } = rgbToHsl(r, g, b);
+    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+}
+</script>
+
+<script>
+    //反色模式
+async function fs() {
+    // 获取颜色配置
+    const response = await fetch('http://zk.jingbing.icu/json/material_you_palette.json');
+    const palettes = await response.json();
     
-    const hues = [
-        baseH,
-        (baseH + 30) % 360,
-        (baseH - 30 + 360) % 360,
-        (baseH + 150) % 360,
-        (baseH - 150 + 360) % 360
-    ];
-
-    return hues.map(hue => 
-        Array.from({ length: 13 }, (_, i) => {
-            const l = 98 - i * 7.5;
-            const s = baseS * (0.3 + 0.7 * (1 - Math.abs(50 - l) / 50); // 修正语法错误
-            const { r, g, b } = hslToRgb(hue, Math.min(100, s), l);
-            return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
-        })
-    );
-};
-
-// 颜色映射和替换逻辑
-const createColorMap = palettes => {
-    const map = new Map();
-    palettes[0].forEach((_, i) => 
-        palettes.forEach((palette, j) => 
-            map.set(palette[i], palettes[3][i])
-        )
-    );
-    return map;
-};
-
-const parseColor = value => {
-    const rgbMatch = value.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(,\s*([\d.]+))?\)/i);
-    if (rgbMatch) return {
-        type: 'rgb',
-        r: rgbMatch[1],
-        g: rgbMatch[2],
-        b: rgbMatch[3],
-        a: rgbMatch[5] || 1
-    };
-    
-    const hexMatch = value.match(/#([0-9a-f]{3,8})/i);
-    if (hexMatch) {
-        let hex = hexMatch[1];
-        if (hex.length === 3) hex = [...hex].map(c => c + c).join('');
-        return {
-            type: 'hex',
-            value: hex.length > 6 ? hex.slice(0, 6) : hex,
-            a: hex.length > 6 ? parseInt(hex.slice(6), 16) / 255 : 1
-        };
-    }
-    return null;
-};
-
-const replaceColors = (colorMap, isNight) => {
-    const applyColor = (original, alpha) => {
-        const target = colorMap.get(original.toUpperCase());
-        return target ? (alpha !== 1 ? 
-            `rgba(${hexToRgb(target).r}, ${hexToRgb(target).g}, ${hexToRgb(target).b}, ${alpha})` : 
-            target) : null;
-    };
-
-    document.querySelectorAll('*').forEach(el => {
-        // 处理内联样式
-        ['color', 'background-color', 'border-color'].forEach(prop => {
-            const value = el.style[prop];
-            if (!value) return;
+    // 创建颜色映射表（原色 -> 反色）
+    const colorMap = new Map();
+    palettes.forEach(palette => {
+        palette.forEach(color => {
+            // 原始颜色
+            const origHex = color.hex.toLowerCase();
+            const origRgb = `rgb(${color.rgb.join(',')})`; // 注意：修复了 RGB 格式
+            const origRgbNoSpace = origRgb.replace(/\s+/g, ''); // 去除空格
             
-            const parsed = parseColor(value);
-            if (!parsed) return;
+            // 反色颜色
+            const compHex = color.complementary_hex.toLowerCase();
+            const compRgb = `rgb(${color.complementary_rgb.join(',')})`;
             
-            const original = parsed.type === 'rgb' ? 
-                `#${((1 << 16) + (+parsed.r << 8) + +parsed.g << 8) + +parsed.b).toString(16).slice(1)}` :
-                `#${parsed.value}`;
-            
-            const newColor = applyColor(original, parsed.a);
-            if (newColor) el.style[prop] = newColor;
-        });
-
-        // 处理Tailwind类名
-        Array.from(el.classList).forEach(className => {
-            const match = className.match(/(bg|text|border)-\[([^\]]+)\]/);
-            if (!match) return;
-
-            const parsed = parseColor(match[2]);
-            if (!parsed) return;
-
-            const original = parsed.type === 'rgb' ? 
-                `#${((1 << 16) + (+parsed.r << 8) + +parsed.g << 8) + +parsed.b).toString(16).slice(1)}` :
-                `#${parsed.value}`;
-            
-            const newColor = applyColor(original, parsed.a);
-            if (newColor) {
-                el.classList.replace(
-                    className, 
-                    `${match[1]}-[${newColor.startsWith('#') ? newColor : newColor.replace(/^rgba?\(/, '').replace(/\)$/, '')}]`
-                );
-            }
+            // 建立映射关系
+            colorMap.set(origHex, compHex);
+            colorMap.set(origRgb, compRgb);
+            colorMap.set(origRgbNoSpace, compRgb); // 支持无空格的 RGB 格式
         });
     });
-};
-//111
-// 主题管理
-class ThemeManager {
-    constructor(baseColor) {
-        this.palettes = generatePalettes(baseColor);
-        this.colorMap = createColorMap(this.palettes);
-        this.isNight = localStorage.getItem('theme') === 'night';
-        
-        this.initButton();
-        this.applyTheme();
-    }
 
-    initButton() {
-        this.button = document.createElement('button');
-        this.button.textContent = '<i class="qi-105"></i>';
-        Object.assign(this.button.style, {
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            padding: '10px 20px',
-            borderRadius: '25px',
-            transition: 'all 0.3s',
-            backgroundColor: '#6750A4',
-            color: '#FFFFFF',
-            border: 'none',
-            zIndex: 1000
+    // 打印颜色映射表以调试
+    console.log('颜色映射表:', [...colorMap.entries()]);
+
+    // 统计变量
+    let totalElements = 0;
+    let replacedElements = 0;
+
+    // 替换所有元素的类名颜色
+    document.querySelectorAll('*').forEach(element => {
+        totalElements++;
+        let hasReplaced = false;
+        const newClasses = Array.from(element.classList).map(className => {
+            // 匹配 tailwind 颜色类名格式（如 bg-[#123456]/50）
+            const match = className.match(/^(\w+)-\[([#]?[a-fA-F0-9]{3,8}|rgb\(.+?\))\]/);
+            if (!match) return className;
+
+            const [full, prefix, colorValue] = match;
+            const normalizedColor = colorValue.toLowerCase().replace(/\s+/g, ''); // 去除空格
+            
+            // 查找对应的深色颜色
+            if (colorMap.has(normalizedColor)) {
+                hasReplaced = true;
+                return `${prefix}-[${colorMap.get(normalizedColor)}]`;
+            } else {
+                // 动态计算反色
+                const complementaryColor = getComplementaryColor(normalizedColor);
+                if (complementaryColor) {
+                    hasReplaced = true;
+                    return `${prefix}-[${complementaryColor}]`;
+                } else {
+                    console.warn(`未找到匹配的颜色: ${normalizedColor}`, element);
+                }
+            }
+            return className;
         });
-        this.button.addEventListener('click', () => this.toggle());
-        document.body.appendChild(this.button);
-    }
 
-    applyTheme() {
-        document.body.style.transition = 'background-color 0.3s, color 0.3s';
-        replaceColors(this.colorMap, this.isNight);
-        localStorage.setItem('theme', this.isNight ? 'night' : 'day');
-        setTimeout(() => document.body.style.transition = '', 300);
-    }
+        if (hasReplaced) {
+            replacedElements++;
+            element.className = newClasses.join(' ');
+        }
+    });
 
-    toggle() {
-        this.isNight = !this.isNight;
-        this.applyTheme();
-    }
+    // 输出统计信息
+    console.log(`搜索到 ${totalElements} 个元素，替换了 ${replacedElements} 个元素的类名`);
 }
 
-// 初始化（将#6750A4替换为你需要的母色）
-new ThemeManager('#6750A4');
+// 动态计算反色
+function getComplementaryColor(color) {
+    if (color.startsWith('#')) {
+        // HEX 格式
+        const hex = color.slice(1);
+        const r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16).padStart(2, '0');
+        const g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16).padStart(2, '0');
+        const b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16).padStart(2, '0');
+        return `#${r}${g}${b}`;
+    } else if (color.startsWith('rgb')) {
+        // RGB 格式
+        const rgb = color.match(/\d+/g).map(Number);
+        const r = 255 - rgb[0];
+        const g = 255 - rgb[1];
+        const b = 255 - rgb[2];
+        return `rgb(${r},${g},${b})`;
+    }
+    return null;
+}
 
-// 添加全局过渡样式
-const style = document.createElement('style');
-style.textContent = `* { transition: background-color 0.3s, color 0.3s, border-color 0.3s !important; }`;
-document.head.appendChild(style);
-    </script>
+</script>
+
 {% endblock %}
