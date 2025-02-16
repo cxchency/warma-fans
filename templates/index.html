@@ -79,18 +79,18 @@
 <div class="snap-y snap-mandatory overflow-y-scroll h-screen" id="main-container">
 
     <!-- 首页展示部分 -->
-    <section class="h-screen bg-gradient flex flex-col justify-center items-center text-center text-white snap-start relative bg-image">
+    <section class="h-screen bg-gradient flex flex-col justify-center items-center text-center text-[#3B1426] snap-start relative bg-image">
         <div class="text-shadow">
             <h1 class="text-6xl font-bold">沃玛频道</h1>
             <p class="text-xl mt-4">一个非官方的<a href="https://space.bilibili.com/53456" target="_blank" class="font-bold"> @Warma </a>同人交流社区</p>
         </div>
         <!-- 按钮部分 -->
         <div class="mt-8 flex space-x-4 text-shadow">
-            <a href="https://qm.qq.com/q/aTXFsufyeI" target="_blank" class="bg-[#1C7DF2] hover:bg-[#73A7E6] text-[#DDF1E8] font-bold py-2 px-4 rounded flex items-center">
+            <a href="https://qm.qq.com/q/aTXFsufyeI" target="_blank" class="bg-[#1C7DF2] hover:bg-[#73A7E6] text-[#14243B] font-bold py-2 px-4 rounded flex items-center">
                 <i class="fa fa-qq mr-2"></i>
                 加入Q群
             </a>
-            <a href="https://pd.qq.com/g/WarmaFans1026/" target="_blank" class="bg-[#1CF193] hover:bg-[#9BE6C5] text-[#BEE9D6] font-bold py-2 px-4 rounded flex items-center">
+            <a href="https://pd.qq.com/g/WarmaFans1026/" target="_blank" class="bg-[#1CF193] hover:bg-[#9BE6C5] text-[#14243B] font-bold py-2 px-4 rounded flex items-center">
                 <i class="fa fa-hashtag mr-2"></i>
                 加入频道
             </a>
@@ -177,257 +177,8 @@
         <p class="text-xl mt-4">这里是其他相关内容。</p>
     </section>
 </div>
-<button class="fixed bottom-4 right-4 bg-[#3B1426] text-[#F1DDE6] px-4 py-2 rounded" onclick="applyDarkMode()">🌙</button>
 
-<script>
-    //深色模式
-async function applyDarkMode() {
-    // 获取颜色配置
-    const response = await fetch('http://zk.jingbing.icu/json/material_you_palette.json');
-    const palettes = await response.json();
-    
-    // 创建颜色映射表（原色 -> 亮度相反的颜色）
-    const colorMap = new Map();
-    palettes.forEach(palette => {
-        palette.forEach(color => {
-            // 原始颜色
-            const origHex = color.hex.toLowerCase();
-            const origRgb = `rgb(${color.rgb.join(',')})`; // 注意：修复了 RGB 格式
-            const origRgbNoSpace = origRgb.replace(/\s+/g, ''); // 去除空格
-            
-            // 计算亮度相反的颜色
-            const compHex = getOppositeBrightnessColor(origHex);
-            const compRgb = getOppositeBrightnessColor(origRgb);
-            
-            // 建立映射关系
-            colorMap.set(origHex, compHex);
-            colorMap.set(origRgb, compRgb);
-            colorMap.set(origRgbNoSpace, compRgb); // 支持无空格的 RGB 格式
-        });
-    });
 
-    // 打印颜色映射表以调试
-    console.log('颜色映射表:', [...colorMap.entries()]);
 
-    // 统计变量
-    let totalElements = 0;
-    let replacedElements = 0;
-
-    // 替换所有元素的类名颜色
-    document.querySelectorAll('*').forEach(element => {
-        totalElements++;
-        let hasReplaced = false;
-        const newClasses = Array.from(element.classList).map(className => {
-            // 匹配 tailwind 颜色类名格式（如 bg-[#123456]/50）
-            const match = className.match(/^(\w+)-\[([#]?[a-fA-F0-9]{3,8}|rgb\(.+?\))\](?:\/(\d+))?/);
-            if (!match) return className;
-
-            const [full, prefix, colorValue, opacity] = match;
-            const normalizedColor = colorValue.toLowerCase().replace(/\s+/g, ''); // 去除空格
-            
-            // 查找对应的亮度相反颜色
-            if (colorMap.has(normalizedColor)) {
-                hasReplaced = true;
-                const newColor = colorMap.get(normalizedColor);
-                return opacity ? `${prefix}-[${newColor}]/${opacity}` : `${prefix}-[${newColor}]`;
-            } else {
-                // 动态计算亮度相反颜色
-                const oppositeColor = getOppositeBrightnessColor(normalizedColor);
-                if (oppositeColor) {
-                    hasReplaced = true;
-                    return opacity ? `${prefix}-[${oppositeColor}]/${opacity}` : `${prefix}-[${oppositeColor}]`;
-                } else {
-                    console.warn(`未找到匹配的颜色: ${normalizedColor}`, element);
-                }
-            }
-            return className;
-        });
-
-        if (hasReplaced) {
-            replacedElements++;
-            element.className = newClasses.join(' ');
-        }
-    });
-
-    // 输出统计信息
-    console.log(`搜索到 ${totalElements} 个元素，替换了 ${replacedElements} 个元素的类名`);
-}
-
-// 动态计算亮度相反颜色
-function getOppositeBrightnessColor(color) {
-    if (color.startsWith('#')) {
-        // HEX 格式
-        const rgb = hexToRgb(color);
-        const hsl = rgbToHsl(rgb[0], rgb[1], rgb[2]);
-        hsl[2] = 100 - hsl[2]; // 反转亮度
-        const newRgb = hslToRgb(hsl[0], hsl[1], hsl[2]);
-        return rgbToHex(newRgb[0], newRgb[1], newRgb[2]);
-    } else if (color.startsWith('rgb')) {
-        // RGB 格式
-        const rgb = color.match(/\d+/g).map(Number);
-        const hsl = rgbToHsl(rgb[0], rgb[1], rgb[2]);
-        hsl[2] = 100 - hsl[2]; // 反转亮度
-        const newRgb = hslToRgb(hsl[0], hsl[1], hsl[2]);
-        return `rgb(${newRgb[0]},${newRgb[1]},${newRgb[2]})`;
-    }
-    return null;
-}
-
-// HEX 转 RGB
-function hexToRgb(hex) {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    return [r, g, b];
-}
-
-// RGB 转 HEX
-function rgbToHex(r, g, b) {
-    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
-}
-
-// RGB 转 HSL
-function rgbToHsl(r, g, b) {
-    r /= 255, g /= 255, b /= 255;
-    const max = Math.max(r, g, b), min = Math.min(r, g, b);
-    let h, s, l = (max + min) / 2;
-
-    if (max === min) {
-        h = s = 0; // 灰度
-    } else {
-        const d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch (max) {
-            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-            case g: h = (b - r) / d + 2; break;
-            case b: h = (r - g) / d + 4; break;
-        }
-        h /= 6;
-    }
-
-    return [h * 360, s * 100, l * 100];
-}
-
-// HSL 转 RGB
-function hslToRgb(h, s, l) {
-    h /= 360, s /= 100, l /= 100;
-    let r, g, b;
-
-    if (s === 0) {
-        r = g = b = l; // 灰度
-    } else {
-        const hue2rgb = (p, q, t) => {
-            if (t < 0) t += 1;
-            if (t > 1) t -= 1;
-            if (t < 1 / 6) return p + (q - p) * 6 * t;
-            if (t < 1 / 2) return q;
-            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-            return p;
-        };
-        const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-        const p = 2 * l - q;
-        r = hue2rgb(p, q, h + 1 / 3);
-        g = hue2rgb(p, q, h);
-        b = hue2rgb(p, q, h - 1 / 3);
-    }
-
-    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
-}
-</script>
-
-<script>
-    //反色模式
-async function fs() {
-    // 获取颜色配置
-    const response = await fetch('http://zk.jingbing.icu/json/material_you_palette.json');
-    const palettes = await response.json();
-    
-    // 创建颜色映射表（原色 -> 反色）
-    const colorMap = new Map();
-    palettes.forEach(palette => {
-        palette.forEach(color => {
-            // 原始颜色
-            const origHex = color.hex.toLowerCase();
-            const origRgb = `rgb(${color.rgb.join(',')})`; // 注意：修复了 RGB 格式
-            const origRgbNoSpace = origRgb.replace(/\s+/g, ''); // 去除空格
-            
-            // 反色颜色
-            const compHex = color.complementary_hex.toLowerCase();
-            const compRgb = `rgb(${color.complementary_rgb.join(',')})`;
-            
-            // 建立映射关系
-            colorMap.set(origHex, compHex);
-            colorMap.set(origRgb, compRgb);
-            colorMap.set(origRgbNoSpace, compRgb); // 支持无空格的 RGB 格式
-        });
-    });
-
-    // 打印颜色映射表以调试
-    console.log('颜色映射表:', [...colorMap.entries()]);
-
-    // 统计变量
-    let totalElements = 0;
-    let replacedElements = 0;
-
-    // 替换所有元素的类名颜色
-    document.querySelectorAll('*').forEach(element => {
-        totalElements++;
-        let hasReplaced = false;
-        const newClasses = Array.from(element.classList).map(className => {
-            // 匹配 tailwind 颜色类名格式（如 bg-[#123456]/50）
-            const match = className.match(/^(\w+)-\[([#]?[a-fA-F0-9]{3,8}|rgb\(.+?\))\]/);
-            if (!match) return className;
-
-            const [full, prefix, colorValue] = match;
-            const normalizedColor = colorValue.toLowerCase().replace(/\s+/g, ''); // 去除空格
-            
-            // 查找对应的深色颜色
-            if (colorMap.has(normalizedColor)) {
-                hasReplaced = true;
-                return `${prefix}-[${colorMap.get(normalizedColor)}]`;
-            } else {
-                // 动态计算反色
-                const complementaryColor = getComplementaryColor(normalizedColor);
-                if (complementaryColor) {
-                    hasReplaced = true;
-                    return `${prefix}-[${complementaryColor}]`;
-                } else {
-                    console.warn(`未找到匹配的颜色: ${normalizedColor}`, element);
-                }
-            }
-            return className;
-        });
-
-        if (hasReplaced) {
-            replacedElements++;
-            element.className = newClasses.join(' ');
-        }
-    });
-
-    // 输出统计信息
-    console.log(`搜索到 ${totalElements} 个元素，替换了 ${replacedElements} 个元素的类名`);
-}
-
-// 动态计算反色
-function getComplementaryColor(color) {
-    if (color.startsWith('#')) {
-        // HEX 格式
-        const hex = color.slice(1);
-        const r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16).padStart(2, '0');
-        const g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16).padStart(2, '0');
-        const b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16).padStart(2, '0');
-        return `#${r}${g}${b}`;
-    } else if (color.startsWith('rgb')) {
-        // RGB 格式
-        const rgb = color.match(/\d+/g).map(Number);
-        const r = 255 - rgb[0];
-        const g = 255 - rgb[1];
-        const b = 255 - rgb[2];
-        return `rgb(${r},${g},${b})`;
-    }
-    return null;
-}
-
-</script>
 
 {% endblock %}
