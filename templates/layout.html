@@ -17,7 +17,7 @@
         .text-shadow {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 2px 2px 4px 阴影，颜色为半透明黑色 */
         }
-
+        
         .svg-shadow {
             filter: url(#svg-shadow);
         }
@@ -30,7 +30,7 @@
             right: 0;
             width: 100%;
             height: calc(100vh - 4rem); /* 计算菜单的高度 */
-            background-color: #FCA5A5; /* 背景颜色 */
+            background-color: #E9BED0; /* 背景颜色 */
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
         }
@@ -42,42 +42,44 @@
         /* 毛玻璃效果 */
         .backdrop-blur {
             backdrop-filter: blur(10px);
+            background:rgb(27, 13, 12,0.5);
         }
     </style>
+    <link rel="stylesheet" href="http://zk.jingbing.icu/font/qweather-icons.css">
 </head>
-<body class="bg-pink-50">
+<body class="bg-[#F0E8DD]">
     <!-- 定义 SVG 过滤器 -->
     <svg width="0" height="0">
         <defs>
             <filter id="svg-shadow" x="-50%" y="-50%" width="200%" height="200%">
-                <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.5)" />
+                <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#F2DEDD" />
             </filter>
         </defs>
     </svg>
 
     <!-- 顶部导航栏 -->
-    <header class="bg-transparent fixed top-0 left-0 w-full z-50">
+    <header class="bg-[#E674A7]/50 backdrop-blur-sm fixed top-0 left-0 w-full z-50">
         <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-4">
-            <a href="https://warma.fans">
+            <a href="{{ url_for('index') }}">
                 <div class="flex items-center">
                     <img src="https://pic1.imgdb.cn/item/67af98fdd0e0a243d4ff66ed.jpg" alt="沃玛频道" class="w-8 h-8 rounded-lg">
-                    <span class="text-2xl text-white ml-2 text-shadow">沃玛频道</span>
+                    <span class="text-2xl text-[#F1DDE6] ml-2 text-shadow">沃玛频道</span>
                 </div>
             </a>
             
             <!-- 使用响应式布局控制导航栏显示 -->
-            <nav class="hidden md:flex space-x-6 text-white">
+            <nav class="hidden md:flex space-x-6 text-[#F1DDE6]">
                 <ul class="flex space-x-6 text-shadow">
                     {% for key, item in nav_items.items() %}
                         <li class="relative group">
-                            <a href="{{ item['link'] }}" class="hover:bg-white hover:bg-opacity-30 hover:backdrop-blur hover:scale-105 transition duration-300 px-2 py-2 rounded flex items-center ">
+                            <a href="{{ item['link'] }}" class="hover:bg-[#3B1426] hover:bg-opacity-30 hover:backdrop-blur hover:scale-105 transition duration-300 px-2 py-2 rounded flex items-center ">
                                 {{ item['label'] }}
                             </a>
                             {% if item['sub_items'] %}
-                                <div class="absolute hidden group-hover:block bg-white bg-opacity-30 backdrop-blur text-white rounded shadow-lg w-48">
+                                <div class="absolute hidden group-hover:block bg-[#3B1426] bg-opacity-30 backdrop-blur text-white rounded shadow-lg w-48">
                                     <ul>
                                         {% for sub_item in item['sub_items'] %}
-                                            <li><a href="{{ sub_item['link'] }}" target="_blank" class="block px-4 py-2 hover:bg-white hover:bg-opacity-40 hover:backdrop-blur border-b border-white-300 rounded flex items-center">
+                                            <li><a href="{{ sub_item['link'] }}" target="_blank" class="block px-4 py-2 hover:bg-[#3B1426] hover:bg-opacity-40 hover:backdrop-blur border-b border-white-300 rounded flex items-center">
                                                 {% if sub_item['icon'].startswith('fa-') %}
                                                     <i class="fa {{ sub_item['icon'] }} mr-2"></i> <!-- Font Awesome 图标 -->
                                                 {% else %}
@@ -95,24 +97,25 @@
             </nav>
 
             <!-- 汉堡按钮：在屏幕较小的时候显示 -->
+
             <div class="md:hidden flex items-center">
-                <button id="hamburger-button" class="text-white text-2xl">
+                <button id="hamburger-button" class="text-[#F1DDE6] text-2xl">
                     <i class="fa fa-bars"></i>
                 </button>
             </div>
         </div>
 
         <!-- 菜单栏：移动端使用的折叠菜单 -->
-    <div id="mobile-menu" class="md:hidden text-white py-2">
+    <div id="mobile-menu" class="md:hidden text-[#3B1426] py-2">
         <ul>
             {% for key, item in nav_items.items() %}
                 <li class="relative group">
-                    <div class="block px-4 py-2 bg-red-300 font-bold">{{ item['label'] }}</div> <!-- 顶级菜单项 -->
+                    <div class="block px-4 py-2 bg-[#E9BED0] font-bold">{{ item['label'] }}</div> <!-- 顶级菜单项 -->
                     {% if item['sub_items'] %}
-                        <ul class="pl-4 bg-red-300 shadow-lg"> <!-- 子菜单列表 -->
+                        <ul class="pl-4 bg-[#E9BED0] shadow-lg"> <!-- 子菜单列表 -->
                             {% for sub_item in item['sub_items'] %}
                                 <li class=""> <!-- 子菜单项 -->
-                                    <a href="{{ sub_item['link'] }}" class="block px-4 py-2 hover:bg-red-400 rounded text-xl flex items-center">
+                                    <a href="{{ sub_item['link'] }}" class="block px-4 py-2 hover:bg[#E9BED0] rounded text-xl flex items-center">
                                         {% if sub_item['icon'].startswith('fa-') %}
                                             <i class="fa {{ sub_item['icon'] }} mr-2"></i> <!-- Font Awesome 图标 -->
                                         {% else %}
@@ -120,6 +123,7 @@
                                         {% endif %}
                                         {{ sub_item['label'] }}
                                     </a>
+
                                 </li>
                             {% endfor %}
                         </ul>
@@ -144,5 +148,5 @@
         });
     </script>
 
-</body>
+
 </html>

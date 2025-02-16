@@ -27,7 +27,7 @@
 
     /* 渐变背景色 */
     .bg-gradient {
-        background: linear-gradient(to bottom, #FCA5A5, #ff7e5f);
+        background: linear-gradient(to bottom, #E9C0BE, #E67B75);
     }
 
     /* 背景图样式 */
@@ -70,43 +70,46 @@
         scroll-snap-align: start;
         margin-right: 1rem; /* 调整间距 */
     }
+    html {
+        transition: all 0.3s ease;
+    }
 </style>
 
 <!-- 整个页面使用滚动对齐 -->
 <div class="snap-y snap-mandatory overflow-y-scroll h-screen" id="main-container">
 
     <!-- 首页展示部分 -->
-    <section class="h-screen bg-gradient flex flex-col justify-center items-center text-center text-white snap-start relative bg-image">
+    <section class="h-screen bg-gradient flex flex-col justify-center items-center text-center text-[#F1DDE6] snap-start relative bg-image">
         <div class="text-shadow">
             <h1 class="text-6xl font-bold">沃玛频道</h1>
             <p class="text-xl mt-4">一个非官方的<a href="https://space.bilibili.com/53456" target="_blank" class="font-bold"> @Warma </a>同人交流社区</p>
         </div>
         <!-- 按钮部分 -->
         <div class="mt-8 flex space-x-4 text-shadow">
-            <a href="https://qm.qq.com/q/aTXFsufyeI" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center">
+            <a href="https://qm.qq.com/q/aTXFsufyeI" target="_blank" class="bg-[#1C7DF2] hover:bg-[#73A7E6] text-[#BFD1E9] font-bold py-2 px-4 rounded flex items-center">
                 <i class="fa fa-qq mr-2"></i>
                 加入Q群
             </a>
-            <a href="https://pd.qq.com/g/WarmaFans1026/" target="_blank" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded flex items-center">
+            <a href="https://pd.qq.com/g/WarmaFans1026/" target="_blank" class="bg-[#1CF193] hover:bg-[#9BE6C5] text-[#BEE9D6] font-bold py-2 px-4 rounded flex items-center">
                 <i class="fa fa-hashtag mr-2"></i>
                 加入频道
             </a>
         </div>
         <!-- 向下滚动提示 -->
-        <div class="scroll-hint">
+        <div class="scroll-hint  text-[#F1DDE6]">
             <span>向下滚动查看更多</span>
         </div>
     </section>
 
     <!-- 沃玛频道介绍和子频道部分 -->
-    <section class="h-screen bg-pink-100 text-black snap-start flex flex-col items-center justify-center px-4">
+    <section class="h-screen bg-[#E9BED0] text-white snap-start flex flex-col items-center justify-center px-4">
         <div class="max-w-4xl mx-auto">
-            <div class="bg-white rounded-lg shadow-lg p-6 mt-8">
-                <h3 class="text-2xl font-semibold mb-4 text-gray-800">关于我们</h3>
-                <p class="text-lg leading-relaxed text-gray-700 text-indent">
-                    沃玛频道是由沃玛粉丝共同维护的非官方综合社区，这里有超过<span class="text-pink-500 font-bold">20个兴趣子频道</span>，聚集了<span class="text-pink-500 font-bold">1.5万+</span>志同道合的伙伴。我们致力于打造一个温暖、包容的交流空间，在这里你可以：
+            <div class="bg-[#F1DDE6] rounded-lg shadow-lg p-6 mt-8">
+                <h3 class="text-2xl font-semibold mb-4 text-[#5E1938]">关于我们</h3>
+                <p class="text-lg leading-relaxed text-[#5E1938] text-indent">
+                    沃玛频道是由沃玛粉丝共同维护的非官方综合社区，这里有超过<span class="text-[#AC1558] font-bold">20个兴趣子频道</span>，聚集了<span class="text-[#AC1558] font-bold">1.5万+</span>志同道合的伙伴。我们致力于打造一个温暖、包容的交流空间，在这里你可以：
                 </p>
-                <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 text-center">
+                <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 text-center text-[#5E1938]">
                     <li class="flex items-center justify-center">❤分享对沃玛的喜爱</li>
                     <li class="flex items-center justify-center">⭐交流兴趣爱好</li>
                     <li class="flex items-center justify-center">🍉分享日常生活</li>
@@ -119,12 +122,12 @@
     </section>
 
     <!-- 详细介绍 -->
-    <section class="h-screen bg-yellow-200 text-black snap-start flex flex-col items-center justify-center px-4">
+    <section class="h-screen bg-[#E6B374] text-[#3B2B14] snap-start flex flex-col items-center justify-center px-4">
         <div class="max-w-4xl mx-auto">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h3 class="text-2xl font-semibold mb-6 text-gray-800">特色子频道导航</h3>
+            <div class="bg-[#E8D6BE] rounded-lg shadow-lg p-8">
+                <h3 class="text-2xl font-semibold mb-6 bg-[#E8D6BE]">特色子频道导航</h3>
                 <div class="scroll-container">
-                    <div class="scroll-item p-4 bg-gray-50 rounded-lg hover:bg-pink-50 transition-colors">
+                    <div class="scroll-item p-4 bg-[#E8D6BE] rounded-lg hover:bg-[#F0E8DD] transition-colors">
                         <h4 class="font-semibold mb-2 text-xl">⭐ 兴趣爱好</h4>
                         <ul class="space-y-1 text-sm">
                             <li>💭「语言Cosplay」</li>
@@ -135,7 +138,7 @@
                         </ul>
                     </div>
                     
-                    <div class="scroll-item p-4 bg-gray-50 rounded-lg hover:bg-pink-50 transition-colors">
+                    <div class="scroll-item p-4 bg-[#E8D6BE] rounded-lg hover:bg-[#F0E8DD] transition-colors">
                         <h4 class="font-semibold mb-2 text-xl">🎮 游戏天地</h4>
                         <ul class="space-y-1 text-sm">
                             <li>🎵「音游」</li>
@@ -146,7 +149,7 @@
                         </ul>
                     </div>
 
-                    <div class="scroll-item p-4 bg-gray-50 rounded-lg hover:bg-pink-50 transition-colors">
+                    <div class="scroll-item p-4 bg-[#E8D6BE] rounded-lg hover:bg-[#F0E8DD] transition-colors">
                         <h4 class="font-semibold mb-2 text-xl">📚 学习成长</h4>
                         <ul class="space-y-1 text-sm">
                             <li>📚「学习交流」</li>
@@ -157,10 +160,10 @@
                 </div>
 
                 <div class="mt-6 text-center">
-                    <p class="text-gray-600 italic">
+                    <p class="text-[#3B2B14] italic">
                         还有更多特色频道等你发现……<br>
                     </p>
-                    <p class="mt-4 text-pink-500 font-medium animate-pulse scroll-hint-text">
+                    <p class="mt-4 text-[#5E1938] font-medium animate-pulse scroll-hint-text">
                         ← 左右滑动查看更多频道 →
                     </p>
                 </div>
@@ -169,22 +172,9 @@
     </section>
 
     <!-- 其他内容部分 -->
-    <section class="h-screen bg-blue-200 text-center text-black snap-start pt-24">
+    <section class="h-screen bg-[#73A7E6] text-center text-[#14243B] snap-start pt-24">
         <h2 class="text-4xl font-bold">其他内容</h2>
         <p class="text-xl mt-4">这里是其他相关内容。</p>
     </section>
 </div>
-
-<script>
-    function adjustSectionHeight() {
-        const sections = document.querySelectorAll('section');
-        const windowHeight = window.innerHeight;
-        sections.forEach(section => {
-            section.style.height = `${windowHeight}px`;
-        });
-    }
-
-    window.addEventListener('resize', adjustSectionHeight);
-    window.addEventListener('load', adjustSectionHeight);
-</script>
 {% endblock %}
